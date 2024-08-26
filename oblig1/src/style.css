@@ -3,94 +3,148 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --backgroundcolor: rgb(32, 32, 32);
+  --accentcolor: rgb(63, 63, 63);
+  --fontcolor: rgb(238, 234, 229);
+  --fonthover: rgb(255, 94, 0);
+
+  background-color: var(--backgroundcolor);
+  color: var(--fontcolor);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: calc(0.5em + 0.5vw);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+header {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto 2rem auto;
+  h1 {
+    font-size: 1.5rem;
+    font-variant: small-caps;
+  }
+  nav {
+    ul {
+      a {
+        padding: 1rem;
+        color: var(--fontcolor);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+          color: var(--fonthover);
+        }
+      }
+    }
+  }
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#app {
-  max-width: 1280px;
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
   margin: 0 auto;
-  padding: 2rem;
+  gap: 1rem;
+  .add-form {
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      height: 40rem;
+      margin: 0 auto;
+      justify-content: space-evenly;
+      input {
+        padding: 0.5rem 0;
+        margin-top: -1rem;
+      }
+    }
+  }
+  .project-card,
+  .add-form {
+    box-shadow: #00000075 0px 0px 10px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 40rem;
+    max-height: fit-content;
+    overflow: hidden;
+    .img-wrapper {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    .title-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--fontcolor);
+      align-items: end;
+      h2 {
+        margin-bottom: 0;
+      }
+      .project-links {
+        a {
+          color: var(--fontcolor);
+          font-size: 1.5rem;
+          margin-left: 1rem;
+          &:hover {
+            color: var(--fonthover);
+          }
+        }
+      }
+    }
+    .desc-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+      justify-content: space-between;
+      .more-btn {
+        margin: 1rem auto;
+      }
+    }
+  }
+}
+
+footer {
   text-align: center;
+  padding: 5rem;
+  margin-top: 5rem;
+  background-color: var(--accentcolor);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.global-btn {
+  width: 40%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  background-color: var(--accentcolor);
+  color: var(--fontcolor);
+  font-size: 1rem;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  &:hover {
+    background-color: var(--fonthover);
+    color: var(--backgroundcolor);
+    text-decoration: underline;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+}
+
+/* Breakpoints */
+
+@media only screen and (min-width: 992px) {
+  main {
+    flex-direction: row;
+    max-width: 70%;
+    .project-card,
+    .add-form {
+      width: 30%;
+    }
   }
 }

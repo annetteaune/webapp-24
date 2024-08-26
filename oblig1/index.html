@@ -1,13 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <script
+      src="https://kit.fontawesome.com/7b716f4322.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Portfolio v1</title>
   </head>
   <body>
-    <div id="app"></div>
+    <header>
+      <h1>Prosjekter</h1>
+      <nav>
+        <ul>
+          <a href="#">Link</a>
+          <a href="#">Link</a>
+          <a href="#">Link</a>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article class="add-form">
+        <form>
+          <h2>Legg til nytt prosjekt</h2>
+
+          <label for="title">Tittel</label>
+          <input id="title" type="text" placeholder="Prosjekttittel" />
+          <label for="desc">Beskrivelse</label>
+          <input id="desc" type="text" placeholder="Kort beskrivelse" />
+          <label for="live">Live link</label>
+          <input id="live" type="text" placeholder="Link til nettsted" />
+          <label for="code">Kodelink</label>
+          <input id="code" type="text" placeholder="Link til kode" />
+          <label for="img">Bildelink</label>
+          <input id="img" type="text" placeholder="Link til bilde" />
+          <button type="submit" class="global-btn">Lagre prosjekt</button>
+        </form>
+      </article>
+
+      <article class="project-card">
+        <section class="img-wrapper">
+          <!--Bruker lorem picsum for placeholder-bilder-->
+          <img src="https://picsum.photos/400/250" alt="placeholder image" />
+        </section>
+        <section class="title-wrapper">
+          <h2>Prosjekt 1</h2>
+          <section class="project-links">
+            <a href="#"><i class="fa-solid fa-globe"></i></a>
+            <a href="#"><i class="fa-solid fa-code"></i></a>
+          </section>
+        </section>
+        <section class="desc-wrapper">
+          <p>
+            Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id
+            turpis pharetra placerat. Proin dui eros, condimentum sit amet
+            bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,
+            vel consectetur nulla blandit. Suspendisse et leo cursus, tempor
+            ipsum in, dictum velit.
+          </p>
+          <button class="more-btn global-btn">Les mer</button>
+        </section>
+      </article>
+
+      <article class="project-card">
+        <section class="img-wrapper">
+          <!--Bruker lorem picsum for placeholder-bilder-->
+          <img src="https://picsum.photos/400/250" alt="placeholder image" />
+        </section>
+        <section class="title-wrapper">
+          <h2>Prosjekt 1</h2>
+          <section class="project-links">
+            <a href="#"><i class="fa-solid fa-globe"></i></a>
+            <a href="#"><i class="fa-solid fa-code"></i></a>
+          </section>
+        </section>
+        <section class="desc-wrapper">
+          <p>
+            Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id
+            turpis pharetra placerat. Proin dui eros, condimentum sit amet
+            bibendum eu, tincidunt eu dui.
+          </p>
+          <button class="more-btn global-btn">Les mer</button>
+        </section>
+      </article>
+    </main>
+    <footer>2024</footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
