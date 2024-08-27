@@ -57,8 +57,9 @@ main {
       height: 40rem;
       margin: 0 auto;
       justify-content: space-evenly;
-      input {
-        padding: 0.5rem 0;
+      input,
+      textarea {
+        padding: 0.3rem 0;
         margin-top: -1rem;
       }
     }
@@ -120,7 +121,7 @@ footer {
   background-color: var(--accentcolor);
 }
 
-.global-btn {
+.btn {
   width: 40%;
   margin: 1rem auto;
   padding: 0.5rem;
@@ -129,6 +130,7 @@ footer {
   font-size: 1rem;
   border: none;
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: #00000075 0px 0px 6px 0px;
   &:hover {
     background-color: var(--fonthover);
     color: var(--backgroundcolor);
