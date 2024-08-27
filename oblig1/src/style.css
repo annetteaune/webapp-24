@@ -3,10 +3,10 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --backgroundcolor: rgb(32, 32, 32);
-  --accentcolor: rgb(63, 63, 63);
-  --fontcolor: rgb(238, 234, 229);
-  --fonthover: rgb(255, 94, 0);
+  --backgroundcolor: rgb(250, 249, 247);
+  --accentcolor: rgb(226, 226, 226);
+  --fontcolor: rgb(36, 36, 36);
+  --fonthover: rgb(224, 82, 0);
 
   background-color: var(--backgroundcolor);
   color: var(--fontcolor);
@@ -44,6 +44,7 @@ header {
 
 main {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   width: 80%;
