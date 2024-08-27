@@ -23,51 +23,52 @@
       </nav>
     </header>
     <main>
-      <article class="add-form">
-        <h2>Legg til nytt prosjekt</h2>
-        <form id="add-project-form">
-          <label for="title">Tittel</label>
-          <input
-            name="title"
-            id="title"
-            type="text"
-            placeholder="Prosjekttittel"
-            required
-          />
-          <label for="description">Beskrivelse</label>
-          <textarea
-            name="description"
-            id="description"
-            placeholder="Kort beskrivelse"
-            rows="8"
-            required
-          ></textarea>
-          <label for="liveLink">Live link </label>
-          <input
-            name="liveLink"
-            id="liveLink"
-            type="url"
-            placeholder="Link til nettsted"
-          />
-          <label for="codeLink">Kodelink </label>
-          <input
-            name="codeLink"
-            id="codeLink"
-            type="url"
-            placeholder="Link til kode"
-          />
-          <label for="imageLink">Bildelink</label>
-          <input
-            name="imageLink"
-            id="imageLink"
-            type="url"
-            placeholder="Link til bilde"
-            required
-          />
-          <button type="submit" class="btn">Lagre prosjekt</button>
-        </form>
-        <!--Prosjektkort legges til dynamisk med ts her-->
-      </article>
+      <section id="content-wrapper">
+        <article class="add-form">
+          <h2>Legg til nytt prosjekt</h2>
+          <form id="add-project-form">
+            <label for="title">Tittel</label>
+            <input
+              name="title"
+              id="title"
+              type="text"
+              placeholder="Prosjekttittel"
+              required
+            />
+            <label for="description">Beskrivelse</label>
+            <textarea
+              name="description"
+              id="description"
+              placeholder="Kort beskrivelse"
+              rows="8"
+              required
+            ></textarea>
+            <label for="liveLink">Live link </label>
+            <input
+              name="liveLink"
+              id="liveLink"
+              type="url"
+              placeholder="Link til nettsted"
+            />
+            <label for="codeLink">Kodelink </label>
+            <input
+              name="codeLink"
+              id="codeLink"
+              type="url"
+              placeholder="Link til kode"
+            />
+            <label for="imageLink">Bildelink</label>
+            <input
+              name="imageLink"
+              id="imageLink"
+              type="url"
+              placeholder="Link til bilde"
+              required
+            />
+            <button type="submit" class="btn">Lagre prosjekt</button>
+          </form>
+        </article>
+      </section>
     </main>
     <footer>2024</footer>
     <script type="module" src="/src/main.ts"></script>

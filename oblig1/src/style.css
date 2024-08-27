@@ -42,7 +42,7 @@ header {
   }
 }
 
-main {
+#content-wrapper {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -146,7 +146,7 @@ footer {
 /* Breakpoints */
 
 @media only screen and (min-width: 992px) {
-  main {
+  #content-wrapper {
     flex-direction: row;
     max-width: 70%;
     .project-card,
