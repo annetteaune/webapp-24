@@ -51,6 +51,10 @@ main {
   margin: 0 auto;
   gap: 1rem;
   .add-form {
+    h2 {
+      text-align: center;
+      padding-top: 1rem;
+    }
     form {
       display: flex;
       flex-direction: column;

@@ -30,13 +30,5 @@
         "image": "https://picsum.photos/400/250",
         "liveLink": "#",
         "codeLink": "#"
-    },
-    {
-        "id": 5,
-        "title": "Prosjekt 5",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
     }
 ]
