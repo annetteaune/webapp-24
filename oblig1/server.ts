@@ -3,8 +3,9 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { ProjectSchema, type Project } from "./types";
+import jsonData from "./data/projects.json";
 
-// mer eller mindre direkte avskrift fra spa-ts her også
+// mer eller mindre direkte avskrift fra spa-ts
 
 const app = new Hono();
 
@@ -12,8 +13,8 @@ app.use("/*", cors());
 
 app.use("/static/*", serveStatic({ root: "./" }));
 
-// tom liste
-const projects: Project[] = [];
+// Legger til data fra json i tom liste
+const projects: Project[] = [...jsonData];
 
 app.post("/add", async (c) => {
   const newProject = await c.req.json();

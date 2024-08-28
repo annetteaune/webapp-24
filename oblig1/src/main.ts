@@ -1,16 +1,19 @@
 import { z } from "zod";
 import { ProjectArraySchema, type Project } from "../types";
 
-/* Har i STOR grad fulgt eksempelet gitt i spa-ts-repoet, da måten jeg hadde satt det opp i starten var veldig ulikt, og
-  fikk det ikke til å funke med serveroppsettet i spa-ts.*/
+/* Har i STOR grad fulgt eksempelet gitt i spa-ts-repoet. Server er helt nytt for meg, så håper det er OK å lene seg på
+  tilgjengeliggjorte løsninger i starten! :) Har heller fokusert på å skjønne hvodan og hvorfor dette funker, og hvor jeg må
+  endre på ting for å få det til å funke slik jeg vil det skal funke.*/
 
 const form = document.getElementById("add-project-form") as HTMLFormElement;
 const contentWrapper = document.getElementById(
   "content-wrapper"
 ) as HTMLElement;
 
-const projects: Project[] = [];
+// let for å kunne legge til fra json
+let projects: Project[] = [];
 
+// Lese input fra skjema
 form.addEventListener("submit", async (event: SubmitEvent) => {
   event.preventDefault();
 
@@ -56,6 +59,10 @@ form.addEventListener("submit", async (event: SubmitEvent) => {
     });
 
     if (response.status === 201) {
+      // Legger til statiske json-prosjekter
+      const updatedProjects = await response.json();
+      projects = updatedProjects;
+      updateProjectsList();
       console.log("Prosjekt lagret på serveren");
     } else {
       console.error("Feil ved lagring av prosjekt på serveren");
@@ -89,10 +96,6 @@ function createProjectCard(project: Project): string {
 function updateProjectsList() {
   console.log("Updating projects list:", projects);
 
-  if (!contentWrapper) {
-    console.error("contentWrapper not found");
-    return;
-  }
   // Fjern eksisterende kort
   const existingCards = contentWrapper.querySelectorAll(".project-card");
   existingCards.forEach((card) => card.remove());
@@ -102,6 +105,8 @@ function updateProjectsList() {
     const projectHTML = createProjectCard(project);
     contentWrapper.insertAdjacentHTML("beforeend", projectHTML);
   }
+  // Tømme skjema
+  form.reset();
 }
 
 function loadFromApi() {
