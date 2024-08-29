@@ -11,7 +11,7 @@ const app = new Hono();
 
 app.use("/*", cors());
 
-app.use("/static/*", serveStatic({ root: "./" }));
+app.use("/src/*", serveStatic({ root: "./" }));
 
 // Legger til data fra json i tom liste
 const projects: Project[] = [...jsonData];
