@@ -2,7 +2,7 @@ import { z } from "zod";
 import { ProjectArraySchema, type Project } from "../types";
 
 /* Har i STOR grad fulgt eksempelet gitt i spa-ts-repoet. Server er helt nytt for meg, så håper det er OK å lene seg på
-  tilgjengeliggjorte løsninger i starten! :) Har heller fokusert på å skjønne hvodan og hvorfor dette funker, og hvor jeg må
+  tilgjengeliggjorte løsninger i starten! :) Har fokusert på å skjønne hvordan og hvorfor ting funker, og hvor jeg må
   endre på ting for å få det til å funke slik jeg vil det skal funke.*/
 
 const form = document.getElementById("add-project-form") as HTMLFormElement;
@@ -50,7 +50,7 @@ form.addEventListener("submit", async (event: SubmitEvent) => {
   updateProjectsList();
 
   try {
-    const response = await fetch("http://localhost:3999/add", {
+    const response = await fetch("http://localhost:3999/new-project", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -115,7 +115,7 @@ function loadFromApi() {
     .then((data: unknown) => {
       try {
         const validatedProjects = ProjectArraySchema.parse(data);
-        projects.push(...validatedProjects);
+        projects = validatedProjects;
         updateProjectsList();
       } catch (error) {
         if (error instanceof z.ZodError) {

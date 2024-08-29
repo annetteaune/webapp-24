@@ -1,34 +1,66 @@
 [
-    {
-        "id": "1",
-        "title": "Prosjekt 1",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    },
-    {
-        "id": "2",
-        "title": "Prosjekt 2",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    },
-    {
-        "id": "3",
-        "title": "Prosjekt 3",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    },
-    {
-        "id": "4",
-        "title": "Prosjekt 4",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    }
+  {
+    "id": "1",
+    "title": "Prosjekt 1",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "2",
+    "title": "Prosjekt 2",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "3",
+    "title": "Prosjekt 3",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "4",
+    "title": "Prosjekt 4",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "ba2088d3-2e44-4cd3-bdaf-3b2c0227024b",
+    "title": "Prosjekt 5",
+    "description": "Test fra skjema for å se om det lagres i JSON",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "https://picsum.photos/400/250",
+    "codeLink": "https://picsum.photos/400/250"
+  },
+  {
+    "id": "2d398bba-d2b7-4060-8800-c9977223323b",
+    "title": "Prosjekt 7",
+    "description": "Mer testing fra skjema for å se hvordan ting oppfører seg",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "https://picsum.photos/400/250",
+    "codeLink": "https://picsum.photos/400/250"
+  },
+  {
+    "id": "20a9cdd1-0668-41ed-8ab4-915a1810068e",
+    "title": "Prosjekt 6",
+    "description": "Hoppa visst over et tall! Men ser ut til at prosjekter blir lagret på både server og i json, så det er jo fint! :)",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "https://picsum.photos/400/250",
+    "codeLink": "https://picsum.photos/400/250"
+  },
+  {
+    "id": "75406890-0152-4e5e-b0ca-eb665793b28f",
+    "title": "Prosjekt 8",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta, vel consectetur nulla blandit. Suspendisse et leo cursus, tempor ipsum in, dictum velit.",
+    "image": "https://picsum.photos/400/250",
+    "liveLink": "https://picsum.photos/400/250",
+    "codeLink": "https://picsum.photos/400/250"
+  }
 ]
