@@ -1,34 +1,66 @@
 [
-    {
-        "id": "1",
-        "title": "Prosjekt 1",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    },
-    {
-        "id": "2",
-        "title": "Prosjekt 2",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    },
-    {
-        "id": "3",
-        "title": "Prosjekt 3",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    },
-    {
-        "id": "4",
-        "title": "Prosjekt 4",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "image": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#"
-    }
+  {
+    "id": "1",
+    "title": "Prosjekt 1",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "2",
+    "title": "Prosjekt 2",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "3",
+    "title": "Prosjekt 3",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "4",
+    "title": "Prosjekt 4",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "#",
+    "codeLink": "#"
+  },
+  {
+    "id": "711ee0ba-3ea0-4914-bfee-693d623a6efd",
+    "title": "Prosjekt 5",
+    "description": "denne legges til via skjema for testing",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "https://picsum.photos/400/250",
+    "codeLink": "https://picsum.photos/400/250"
+  },
+  {
+    "id": "8bf33866-0954-4fc6-b248-a109673cc051",
+    "title": "Prosjekt 6",
+    "description": "tester  om dependency for useeffect funker",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "https://picsum.photos/400/250",
+    "codeLink": "https://picsum.photos/400/250"
+  },
+  {
+    "id": "3bd462ef-d1a9-4e9c-a584-8af84339cc2a",
+    "title": "Prosjekt 7",
+    "description": "test",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "",
+    "codeLink": ""
+  },
+  {
+    "id": "8646134f-9f8a-4eac-bcfa-0cf3e5d93cec",
+    "title": "Prosjekt 8",
+    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta, vel consectetur nulla blandit. Suspendisse et leo cursus, tempor ipsum in, dictum velit.",
+    "imageLink": "https://picsum.photos/400/250",
+    "liveLink": "",
+    "codeLink": ""
+  }
 ]

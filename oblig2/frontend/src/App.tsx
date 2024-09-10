@@ -5,6 +5,11 @@ import Projects from "./components/Projects";
 import { ofetch } from "ofetch";
 
 function App() {
+  /* 
+  Jeg har bare kopiert inn css og struktur fra oblig 1, da jeg har forstått oppgaven som å gjøre akkurat 
+  det samme som i 1, men med react. 
+  */
+
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -14,7 +19,7 @@ function App() {
     };
 
     fetchProjects();
-  }, []); // kjører kun en gang per nå, endre senere slik at den kjører igjen når et nytt ptosjkt legges tiL!
+  }, [projects]); // oppdateres hver gang projects endres
 
   return (
     <>

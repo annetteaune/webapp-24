@@ -9,7 +9,7 @@ app.use("/*", cors());
 
 const jsonPath = "./data/projects.json";
 
-//LEse fra json
+// lese fra json
 async function readFromJson(): Promise<Project[]> {
   try {
     const jsonData = await readFile(jsonPath, "utf-8");
@@ -20,6 +20,15 @@ async function readFromJson(): Promise<Project[]> {
   }
 }
 
+// skrive til json
+async function writeToJson(projects: Project[]): Promise<void> {
+  try {
+    await writeFile(jsonPath, JSON.stringify(projects, null, 2));
+  } catch (error) {
+    console.error("Error under skriving til JSON:", error);
+  }
+}
+
 let projects: Project[] = [];
 
 // Laster inn eksisterende prosjekter
@@ -27,6 +36,30 @@ readFromJson().then((loadedProjects) => {
   projects = loadedProjects;
 });
 
+app.post("/projects", async (c) => {
+  try {
+    const newProject = await c.req.json();
+
+    // legge til ID i prosjektdata
+    const projectWithId = {
+      id: crypto.randomUUID(),
+      ...newProject,
+    };
+
+    // validere
+    const project = ProjectSchema.parse(projectWithId);
+
+    // legge til i prosjektlista
+    projects.push(project);
+
+    await writeToJson(projects);
+
+    return c.json<Project[]>(projects, { status: 201 });
+  } catch (error) {
+    console.error("Error:", error);
+    return c.json({ error: "Feil under lagring av data" }, { status: 400 });
+  }
+});
 app.get("/projects", (c) => {
   return c.json<Project[]>(projects);
 });

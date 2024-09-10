@@ -1,14 +1,90 @@
+import { useState, type FormEvent } from "react";
+import { ofetch } from "ofetch";
+
 export default function AddProjectForm() {
+  const addProject = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!title || !description || !imageLink) return;
+
+    // Opprett et nytt prosjekt-objekt fra staten
+    const newProject = {
+      title,
+      description,
+      liveLink,
+      codeLink,
+      imageLink,
+    };
+
+    try {
+      // sender post-forespørsel til server for å lagre prosjekt
+      const response = await ofetch("http://localhost:3000/projects", {
+        method: "POST",
+        body: JSON.stringify(newProject),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("Prosjekt lagret: ", response);
+      // reset form etter at prosjektet er lagret
+      setTitle("");
+      setDescription("");
+      setLiveLink("");
+      setCodeLink("");
+      setImageLink("");
+    } catch (error) {
+      console.error("Feil ved lagring av prosjekt:", error);
+    }
+  };
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [liveLink, setLiveLink] = useState("");
+  const [codeLink, setCodeLink] = useState("");
+  const [imageLink, setImageLink] = useState("");
+
+  const updateTitle = (event: FormEvent<HTMLInputElement>) => {
+    const input = event.target as HTMLInputElement | null;
+    if (!input) return;
+    setTitle(input.value);
+  };
+
+  const updateDesc = (event: FormEvent<HTMLTextAreaElement>) => {
+    const input = event.target as HTMLTextAreaElement | null;
+    if (!input) return;
+    setDescription(input.value);
+  };
+
+  const updateLiveLink = (event: FormEvent<HTMLInputElement>) => {
+    const input = event.target as HTMLInputElement | null;
+    if (!input) return;
+    setLiveLink(input.value);
+  };
+
+  const updateCodeLink = (event: FormEvent<HTMLInputElement>) => {
+    const input = event.target as HTMLInputElement | null;
+    if (!input) return;
+    setCodeLink(input.value);
+  };
+
+  const updateImageLink = (event: FormEvent<HTMLInputElement>) => {
+    const input = event.target as HTMLInputElement | null;
+    if (!input) return;
+    setImageLink(input.value);
+  };
+
   return (
     <article className="add-form">
       <h2>Legg til nytt prosjekt</h2>
-      <form id="add-project-form">
+      <form id="add-project-form" onSubmit={addProject}>
         <label htmlFor="title">Tittel</label>
         <input
           name="title"
           id="title"
           type="text"
           placeholder="Prosjekttittel"
+          value={title}
+          onChange={updateTitle}
           required
         />
         <label htmlFor="description">Beskrivelse</label>
@@ -16,6 +92,8 @@ export default function AddProjectForm() {
           name="description"
           id="description"
           placeholder="Kort beskrivelse"
+          value={description}
+          onChange={updateDesc}
           required
         ></textarea>
         <label htmlFor="liveLink">Live link </label>
@@ -23,6 +101,8 @@ export default function AddProjectForm() {
           name="liveLink"
           id="liveLink"
           type="url"
+          value={liveLink}
+          onChange={updateLiveLink}
           placeholder="Link til nettsted"
         />
         <label htmlFor="codeLink">Kodelink </label>
@@ -30,6 +110,8 @@ export default function AddProjectForm() {
           name="codeLink"
           id="codeLink"
           type="url"
+          value={codeLink}
+          onChange={updateCodeLink}
           placeholder="Link til kode"
         />
         <label htmlFor="imageLink">Bildelink</label>
@@ -37,6 +119,8 @@ export default function AddProjectForm() {
           name="imageLink"
           id="imageLink"
           type="url"
+          value={imageLink}
+          onChange={updateImageLink}
           placeholder="Link til bilde"
           required
         />

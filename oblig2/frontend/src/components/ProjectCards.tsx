@@ -9,7 +9,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="project-card">
       <section className="img-wrapper">
-        <img src={project.image} alt={project.title} />
+        <img src={project.imageLink} alt={project.title} />
       </section>
       <section className="title-wrapper">
         <h2>{project.title}</h2>
