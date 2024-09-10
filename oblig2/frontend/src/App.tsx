@@ -1,7 +1,13 @@
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Projects from "./components/Projects";
+
 function App() {
   return (
     <>
-      <h1>Init</h1>
+      <Header />
+      <Projects />
+      <Footer />
     </>
   );
 }
