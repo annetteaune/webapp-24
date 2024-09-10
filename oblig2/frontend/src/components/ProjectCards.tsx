@@ -1,24 +1,29 @@
 import { FaCode, FaGlobe } from "react-icons/fa";
+import { Project } from "../types";
 
-export default function ProjectCard() {
+interface ProjectCardProps {
+  project: Project;
+}
+
+export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="project-card">
       <section className="img-wrapper">
-        <img src="https://picsum.photos/400/250" alt="placeholder image" />
+        <img src={project.image} alt={project.title} />
       </section>
       <section className="title-wrapper">
-        <h2>Placeholder title</h2>
+        <h2>{project.title}</h2>
         <section className="project-links">
-          <a href="#">
+          <a href={project.liveLink}>
             <FaGlobe />
           </a>
-          <a href="#">
+          <a href={project.codeLink}>
             <FaCode />
           </a>
         </section>
       </section>
       <section className="desc-wrapper">
-        <p>Description placeholder</p>
+        <p>{project.description}</p>
         <button className="more-btn btn">Les mer</button>
       </section>
     </article>

@@ -1,15 +1,18 @@
 import AddProjectForm from "./AddProjectForm";
 import ProjectCard from "./ProjectCards";
+import { Project } from "../types";
 
-export default function Projects() {
+interface ProjectsProps {
+  projects: Project[];
+}
+
+export default function Projects({ projects }: ProjectsProps) {
   return (
     <section id="content-wrapper">
       <AddProjectForm />
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
+      {projects.map((project) => (
+        <ProjectCard key={project.id} project={project} />
+      ))}
     </section>
   );
 }
