@@ -18,6 +18,11 @@
   font-size: calc(0.5em + 0.5vw);
 }
 
+main {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -38,6 +43,24 @@ header {
           color: var(--fonthover);
         }
       }
+    }
+  }
+}
+
+#skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  .skills-list {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 80%;
+    .skills-li {
+      background-color: var(--accentcolor);
+      padding: 0.5rem;
+      border-radius: 15px;
     }
   }
 }
@@ -112,11 +135,78 @@ header {
       height: 100%;
       margin: 0 auto;
       justify-content: space-between;
-      .more-btn {
-        margin: 1rem auto;
+      .btn-wrapper {
+        display: flex;
+        .more-btn {
+          margin: 1rem auto;
+        }
+        .delete-btn {
+          width: 2.5rem;
+          border-radius: 15px;
+        }
       }
     }
   }
+}
+
+#contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.info-wrapper {
+  background-color: var(--accentcolor);
+  padding: 4rem 2rem;
+  border-radius: 15px;
+}
+
+.message-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accentcolor);
+  padding: 4rem 2rem;
+  border-radius: 15px;
+  .msg-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      input,
+      textarea {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+.email-btn,
+.msg-btn {
+  padding: 0.2rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 15px;
+  background-color: var(--accentcolor);
+  &:hover {
+    background-color: var(--fonthover);
+    color: var(--backgroundcolor);
+  }
+}
+
+.section-title {
+  text-align: center;
+  margin-top: 5rem;
+  color: var(--fonthover);
+}
+
+.error-txt {
+  color: red;
 }
 
 footer {
@@ -174,6 +264,18 @@ footer {
           margin-top: -0.8rem;
         }
       }
+    }
+  }
+
+  #contact-wrapper {
+    flex-direction: row;
+    gap: 5rem;
+    align-items: stretch;
+  }
+
+  #skills-wrapper {
+    .skills-list {
+      margin: 0 auto;
     }
   }
 }

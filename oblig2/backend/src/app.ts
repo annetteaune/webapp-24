@@ -60,8 +60,27 @@ app.post("/projects", async (c) => {
     return c.json({ error: "Feil under lagring av data" }, { status: 400 });
   }
 });
+
 app.get("/projects", (c) => {
   return c.json<Project[]>(projects);
+});
+
+// slette prosjekter, her har jeg fått hjelp fra claude siden vi ikke har vært gjennom sletting fra server så langt i kurset.
+app.delete("/projects/:id", async (c) => {
+  const id = c.req.param("id");
+  const index = projects.findIndex((project) => project.id === id);
+
+  if (index === -1) {
+    return c.json(
+      { error: "Feil under sletting av prosjekt" },
+      { status: 404 }
+    );
+  }
+
+  projects.splice(index, 1);
+  await writeToJson(projects);
+
+  return c.json({ message: "Prosjekt slettet" }, { status: 200 });
 });
 
 export default app;
