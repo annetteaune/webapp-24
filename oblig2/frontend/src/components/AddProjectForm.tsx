@@ -1,13 +1,19 @@
-import { useState, type FormEvent } from "react";
-import { ofetch } from "ofetch";
+import { useState, FormEvent } from "react";
+import { useProjects } from "../hooks/useProjects";
 
 export default function AddProjectForm() {
+  const { handleAdd } = useProjects();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [liveLink, setLiveLink] = useState("");
+  const [codeLink, setCodeLink] = useState("");
+  const [imageLink, setImageLink] = useState("");
+
   const addProject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!title || !description || !imageLink) return;
 
-    // Opprett et nytt prosjekt-objekt fra staten
     const newProject = {
       title,
       description,
@@ -17,15 +23,7 @@ export default function AddProjectForm() {
     };
 
     try {
-      // sender post-forespørsel til server for å lagre prosjekt
-      const response = await ofetch("http://localhost:3000/projects", {
-        method: "POST",
-        body: JSON.stringify(newProject),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log("Prosjekt lagret: ", response);
+      await handleAdd(newProject);
       // reset form etter at prosjektet er lagret
       setTitle("");
       setDescription("");
@@ -33,15 +31,9 @@ export default function AddProjectForm() {
       setCodeLink("");
       setImageLink("");
     } catch (error) {
-      console.error("Feil ved lagring av prosjekt:", error);
+      console.error("Error adding project:", error);
     }
   };
-
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [liveLink, setLiveLink] = useState("");
-  const [codeLink, setCodeLink] = useState("");
-  const [imageLink, setImageLink] = useState("");
 
   const updateTitle = (event: FormEvent<HTMLInputElement>) => {
     const input = event.target as HTMLInputElement | null;
