@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { ProjectSchema, type Project } from "./types";
 import { readFile, writeFile } from "fs/promises";
+import { formatISO } from "date-fns";
 
 const app = new Hono();
 
@@ -40,9 +41,12 @@ app.post("/projects", async (c) => {
   try {
     const newProject = await c.req.json();
 
+    const publishedAt = formatISO(new Date());
+
     // legge til ID i prosjektdata
     const projectWithId = {
       id: crypto.randomUUID(),
+      publishedAt,
       ...newProject,
     };
 

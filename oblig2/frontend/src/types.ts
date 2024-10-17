@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { validateDate } from "./services/validation";
 
 //Følger her det som er vist i spa-ts-repoet.
 
@@ -10,6 +11,9 @@ export const ProjectSchema = z.object({
   imageLink: z.string(),
   liveLink: z.string(),
   codeLink: z.string(),
+  publishedAt: z.string().refine((date) => validateDate(date), {
+    message: "Ugyldig datoformat",
+  }),
 });
 
 export const ProjectCreateSchema = ProjectSchema.omit({ id: true });

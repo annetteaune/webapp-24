@@ -1,5 +1,7 @@
 import { useState, FormEvent } from "react";
 import { useProjects } from "../hooks/useProjects";
+import { handleInputChange } from "../services/formServices";
+import { validateProject } from "../services/validation";
 
 export default function AddProjectForm() {
   const { handleAdd } = useProjects();
@@ -12,15 +14,16 @@ export default function AddProjectForm() {
   const addProject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!title || !description || !imageLink) return;
-
     const newProject = {
       title,
       description,
       liveLink,
       codeLink,
       imageLink,
+      publishedAt: new Date().toISOString(),
     };
+
+    if (!validateProject(newProject)) return;
 
     try {
       await handleAdd(newProject);
@@ -35,36 +38,6 @@ export default function AddProjectForm() {
     }
   };
 
-  const updateTitle = (event: FormEvent<HTMLInputElement>) => {
-    const input = event.target as HTMLInputElement | null;
-    if (!input) return;
-    setTitle(input.value);
-  };
-
-  const updateDesc = (event: FormEvent<HTMLTextAreaElement>) => {
-    const input = event.target as HTMLTextAreaElement | null;
-    if (!input) return;
-    setDescription(input.value);
-  };
-
-  const updateLiveLink = (event: FormEvent<HTMLInputElement>) => {
-    const input = event.target as HTMLInputElement | null;
-    if (!input) return;
-    setLiveLink(input.value);
-  };
-
-  const updateCodeLink = (event: FormEvent<HTMLInputElement>) => {
-    const input = event.target as HTMLInputElement | null;
-    if (!input) return;
-    setCodeLink(input.value);
-  };
-
-  const updateImageLink = (event: FormEvent<HTMLInputElement>) => {
-    const input = event.target as HTMLInputElement | null;
-    if (!input) return;
-    setImageLink(input.value);
-  };
-
   return (
     <article className="add-form">
       <h2>Legg til nytt prosjekt</h2>
@@ -76,7 +49,7 @@ export default function AddProjectForm() {
           type="text"
           placeholder="Prosjekttittel"
           value={title}
-          onChange={updateTitle}
+          onChange={handleInputChange(setTitle)}
           required
         />
         <label htmlFor="description">Beskrivelse</label>
@@ -85,7 +58,7 @@ export default function AddProjectForm() {
           id="description"
           placeholder="Kort beskrivelse"
           value={description}
-          onChange={updateDesc}
+          onChange={handleInputChange(setDescription)}
           required
         ></textarea>
         <label htmlFor="liveLink">Live link </label>
@@ -94,7 +67,7 @@ export default function AddProjectForm() {
           id="liveLink"
           type="url"
           value={liveLink}
-          onChange={updateLiveLink}
+          onChange={handleInputChange(setLiveLink)}
           placeholder="Link til nettsted"
         />
         <label htmlFor="codeLink">Kodelink </label>
@@ -103,7 +76,7 @@ export default function AddProjectForm() {
           id="codeLink"
           type="url"
           value={codeLink}
-          onChange={updateCodeLink}
+          onChange={handleInputChange(setCodeLink)}
           placeholder="Link til kode"
         />
         <label htmlFor="imageLink">Bildelink</label>
@@ -112,7 +85,7 @@ export default function AddProjectForm() {
           id="imageLink"
           type="url"
           value={imageLink}
-          onChange={updateImageLink}
+          onChange={handleInputChange(setImageLink)}
           placeholder="Link til bilde"
           required
         />

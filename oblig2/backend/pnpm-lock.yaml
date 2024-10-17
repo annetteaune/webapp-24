@@ -11,6 +11,9 @@ importers:
       '@hono/node-server':
         specifier: ^1.12.2
         version: 1.12.2(hono@4.5.11)
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       hono:
         specifier: ^4.5.11
         version: 4.5.11
@@ -183,6 +186,9 @@ packages:
   '@types/node@20.16.5':
     resolution: {integrity: sha512-VwYCweNo3ERajwy0IUlqqcyZ8/A7Zwa9ZP3MnENWcB11AejO+tLy3pu850goUW2FC/IJMdZUfKpX/yxL1gymCA==}
 
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
+
   destr@2.0.3:
     resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
 
@@ -307,6 +313,8 @@ snapshots:
   '@types/node@20.16.5':
     dependencies:
       undici-types: 6.19.8
+
+  date-fns@4.1.0: {}
 
   destr@2.0.3: {}
 

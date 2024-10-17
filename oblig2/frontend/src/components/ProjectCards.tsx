@@ -1,5 +1,6 @@
 import { FaCode, FaGlobe, FaTrash } from "react-icons/fa";
 import { Project } from "../types";
+import { format } from "date-fns";
 
 interface ProjectCardProps {
   project: Project;
@@ -12,6 +13,11 @@ export default function ProjectCard({ project, onDelete }: ProjectCardProps) {
       onDelete(project.id);
     }
   };
+
+  const formattedDate = format(
+    new Date(project.publishedAt),
+    "dd/MM/yyyy HH:mm"
+  );
 
   return (
     <article className="project-card">
@@ -39,6 +45,7 @@ export default function ProjectCard({ project, onDelete }: ProjectCardProps) {
           </button>
         </div>
       </section>
+      <p className="published-date">Publisert: {formattedDate}</p>
     </article>
   );
 }
