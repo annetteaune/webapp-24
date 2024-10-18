@@ -2,6 +2,7 @@ import { useState, FormEvent } from "react";
 import { useProjects } from "../hooks/useProjects";
 import { handleInputChange } from "../services/formServices";
 import { validateProject } from "../services/validation";
+import { TECHNOLOGIES } from "../services/formServices";
 
 export default function AddProjectForm() {
   const { handleAdd } = useProjects();
@@ -10,6 +11,18 @@ export default function AddProjectForm() {
   const [liveLink, setLiveLink] = useState("");
   const [codeLink, setCodeLink] = useState("");
   const [imageLink, setImageLink] = useState("");
+  const [privateBox, setPrivateBox] = useState(false);
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+    []
+  );
+
+  const handleTechnologyChange = (techId: string) => {
+    setSelectedTechnologies((prev) =>
+      prev.includes(techId)
+        ? prev.filter((id) => id !== techId)
+        : [...prev, techId]
+    );
+  };
 
   const addProject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,6 +34,10 @@ export default function AddProjectForm() {
       codeLink,
       imageLink,
       publishedAt: new Date().toISOString(),
+      privateBox,
+      technologies: TECHNOLOGIES.filter((tech) =>
+        selectedTechnologies.includes(tech.id)
+      ),
     };
 
     if (!validateProject(newProject)) return;
@@ -33,6 +50,8 @@ export default function AddProjectForm() {
       setLiveLink("");
       setCodeLink("");
       setImageLink("");
+      setPrivateBox(false);
+      setSelectedTechnologies([]);
     } catch (error) {
       console.error("Error adding project:", error);
     }
@@ -89,6 +108,30 @@ export default function AddProjectForm() {
           placeholder="Link til bilde"
           required
         />
+        {/*kilde: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset */}
+        <fieldset className="form-tech">
+          <legend>Teknologier</legend>
+          {TECHNOLOGIES.map((tech) => (
+            <label key={tech.id} className="form-tech-label">
+              <input
+                type="checkbox"
+                checked={selectedTechnologies.includes(tech.id)}
+                onChange={() => handleTechnologyChange(tech.id)}
+              />
+              {tech.name}
+            </label>
+          ))}
+        </fieldset>
+
+        <label htmlFor="privateBox" className="private-box">
+          <input
+            type="checkbox"
+            id="privateBox"
+            checked={privateBox}
+            onChange={() => setPrivateBox(!privateBox)}
+          />
+          Privat prosjekt
+        </label>
         <button type="submit" className="btn">
           Lagre prosjekt
         </button>

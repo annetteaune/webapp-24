@@ -6,7 +6,22 @@
     "imageLink": "https://picsum.photos/400/250",
     "liveLink": "#",
     "codeLink": "#",
-    "publishedAt": "2024-10-17T22:50:38+02:00"
+    "publishedAt": "2024-10-17T22:50:38+02:00",
+    "privateBox": true,
+    "technologies": [
+      {
+        "id": "1",
+        "name": "React"
+      },
+      {
+        "id": "2",
+        "name": "Node.js"
+      },
+      {
+        "id": "3",
+        "name": "TypeScript"
+      }
+    ]
   },
   {
     "id": "2",
@@ -15,7 +30,22 @@
     "imageLink": "https://picsum.photos/400/250",
     "liveLink": "#",
     "codeLink": "#",
-    "publishedAt": "2024-10-17T22:50:38+02:00"
+    "publishedAt": "2024-10-17T22:50:38+02:00",
+    "privateBox": true,
+    "technologies": [
+      {
+        "id": "1",
+        "name": "React"
+      },
+      {
+        "id": "2",
+        "name": "Node.js"
+      },
+      {
+        "id": "3",
+        "name": "TypeScript"
+      }
+    ]
   },
   {
     "id": "3",
@@ -24,7 +54,22 @@
     "imageLink": "https://picsum.photos/400/250",
     "liveLink": "#",
     "codeLink": "#",
-    "publishedAt": "2024-10-17T22:50:38+02:00"
+    "publishedAt": "2024-10-17T22:50:38+02:00",
+    "privateBox": true,
+    "technologies": [
+      {
+        "id": "1",
+        "name": "React"
+      },
+      {
+        "id": "2",
+        "name": "Node.js"
+      },
+      {
+        "id": "3",
+        "name": "TypeScript"
+      }
+    ]
   },
   {
     "id": "4",
@@ -33,15 +78,41 @@
     "imageLink": "https://picsum.photos/400/250",
     "liveLink": "#",
     "codeLink": "#",
-    "publishedAt": "2024-10-17T22:50:38+02:00"
+    "publishedAt": "2024-10-17T22:50:38+02:00",
+    "privateBox": true,
+    "technologies": [
+      {
+        "id": "1",
+        "name": "React"
+      },
+      {
+        "id": "2",
+        "name": "Node.js"
+      },
+      {
+        "id": "3",
+        "name": "TypeScript"
+      }
+    ]
   },
   {
-    "id": "31a40cc2-159e-45ba-a158-2560c564b806",
-    "title": "asdasdasd",
-    "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta, vel consectetur nulla blandit. Suspendisse et leo cursus, tempor ipsum in, dictum velit.",
+    "id": "48ee207f-2c4e-4bec-b172-322ec494afd7",
+    "title": "Test",
+    "description": "test test test",
     "imageLink": "https://picsum.photos/400/250",
     "liveLink": "https://picsum.photos/400/250",
     "codeLink": "https://picsum.photos/400/250",
-    "publishedAt": "2024-10-17T21:21:01.634Z"
+    "publishedAt": "2024-10-18T18:23:24.348Z",
+    "privateBox": false,
+    "technologies": [
+      {
+        "id": "5",
+        "name": "Python"
+      },
+      {
+        "id": "7",
+        "name": "SQL"
+      }
+    ]
   }
 ]

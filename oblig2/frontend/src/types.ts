@@ -1,7 +1,15 @@
 import { z } from "zod";
 import { validateDate } from "./services/validation";
 
-//Følger her det som er vist i spa-ts-repoet.
+// schema for teknologier
+export const TechnologySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+});
+
+export type Technology = z.infer<typeof TechnologySchema>;
+
+export const TechnologyArraySchema = z.array(TechnologySchema);
 
 // Schema for prosjekt
 export const ProjectSchema = z.object({
@@ -14,6 +22,8 @@ export const ProjectSchema = z.object({
   publishedAt: z.string().refine((date) => validateDate(date), {
     message: "Ugyldig datoformat",
   }),
+  privateBox: z.boolean(),
+  technologies: z.array(TechnologySchema),
 });
 
 export const ProjectCreateSchema = ProjectSchema.omit({ id: true });

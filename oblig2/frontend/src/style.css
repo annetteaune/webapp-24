@@ -82,13 +82,15 @@ header {
       display: flex;
       flex-direction: column;
       width: 80%;
-      height: 32rem;
       margin: 0 auto;
       justify-content: space-evenly;
       input,
       textarea {
         padding: 0.3rem 0;
         margin-top: -0.3rem;
+      }
+      #description {
+        min-height: 3rem;
       }
     }
   }
@@ -149,9 +151,39 @@ header {
   }
 }
 
+.project-tech {
+  .tech-ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 0;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    li {
+      font-size: 0.8rem;
+      background-color: var(--accentcolor);
+      padding: 0.4rem;
+      border-radius: 15px;
+    }
+  }
+}
+
 .published-date {
   text-align: center;
   font-size: 0.7rem;
+}
+
+.form-tech {
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .form-tech-label {
+    padding: 0.5rem;
+  }
+}
+.private-box {
+  padding-top: 0.5rem;
 }
 
 #contact-wrapper {
@@ -246,12 +278,6 @@ footer {
     .project-card,
     .add-form {
       width: 40%;
-      form {
-        input,
-        textarea {
-          margin-top: -0.7rem;
-        }
-      }
     }
   }
 }
@@ -263,12 +289,6 @@ footer {
     .project-card,
     .add-form {
       width: 30%;
-      form {
-        input,
-        textarea {
-          margin-top: -0.8rem;
-        }
-      }
     }
   }
 

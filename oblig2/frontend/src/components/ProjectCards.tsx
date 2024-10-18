@@ -14,6 +14,7 @@ export default function ProjectCard({ project, onDelete }: ProjectCardProps) {
     }
   };
 
+  //formaterer dato til mer lesevennlig format enn råformatet
   const formattedDate = format(
     new Date(project.publishedAt),
     "dd/MM/yyyy HH:mm"
@@ -35,6 +36,17 @@ export default function ProjectCard({ project, onDelete }: ProjectCardProps) {
             <FaCode />
           </a>
         </section>
+      </section>
+      <section className="project-tech">
+        {project.technologies && project.technologies.length > 0 ? (
+          <ul className="tech-ul">
+            {project.technologies.map((tech) => (
+              <li key={tech.id}>{tech.name}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>. . .</p>
+        )}
       </section>
       <section className="desc-wrapper">
         <p>{project.description}</p>
