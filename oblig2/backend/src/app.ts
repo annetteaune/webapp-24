@@ -3,12 +3,32 @@ import { cors } from "hono/cors";
 import { ProjectSchema, type Project } from "./types";
 import { readFile, writeFile } from "fs/promises";
 import { formatISO } from "date-fns";
+import { ServerEnv } from "./lib/env";
+import { DB } from "./db/db";
+import { Logger } from "pino";
+import { projectController } from "./features/projects/controller/controller";
 
 const app = new Hono();
+
+export type ServiceContext = {
+  db: DB;
+  logger: Logger;
+};
+
+export type HonoEnv = {
+  Bindings: ServerEnv;
+  Variables: {
+    services: ServiceContext;
+  };
+};
 
 app.use("/*", cors());
 
 const jsonPath = "./data/projects.json";
+
+// routes
+app.route("/v1/projects", projectController);
+app.route("/v1/projects:id", projectController);
 
 // lese fra json
 async function readFromJson(): Promise<Project[]> {

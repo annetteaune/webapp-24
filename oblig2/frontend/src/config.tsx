@@ -18,3 +18,6 @@ export const student: Student = {
     { name: "Python" },
   ],
 };
+
+// URLs
+export const PROJECTS = "http://localhost:3000/projects";

@@ -175,7 +175,7 @@ header {
 
 .form-tech {
   display: flex;
-
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   .form-tech-label {
@@ -280,9 +280,12 @@ footer {
       width: 40%;
     }
   }
+  .form-tech {
+    flex-direction: row;
+  }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1400px) {
   #content-wrapper {
     flex-direction: row;
     max-width: 70%;
