@@ -1,11 +1,12 @@
 import { useState, FormEvent } from "react";
-import { useProjects } from "../hooks/useProjects";
+import { useProjects } from "../features/projects/hooks/useProjects";
 import { handleInputChange } from "../services/formServices";
-import { validateProject } from "../services/validation";
 import { TECHNOLOGIES } from "../services/formServices";
+import { Project } from "../types";
+import { validateProjects } from "../features/projects/helpers/schema";
 
 export default function AddProjectForm() {
-  const { handleAdd } = useProjects();
+  const { add } = useProjects();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [liveLink, setLiveLink] = useState("");
@@ -27,24 +28,24 @@ export default function AddProjectForm() {
   const addProject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const newProject = {
+    const newProject: Partial<Project> = {
       title,
       description,
       liveLink,
       codeLink,
       imageLink,
-      publishedAt: new Date().toISOString(),
+      publishedAt: new Date(),
       privateBox,
       technologies: TECHNOLOGIES.filter((tech) =>
         selectedTechnologies.includes(tech.id)
       ),
     };
 
-    if (!validateProject(newProject)) return;
+    if (!validateProjects(newProject)) return;
 
     try {
-      await handleAdd(newProject);
-      // reset form etter at prosjektet er lagret
+      await add(newProject);
+      // reset form after the project is saved
       setTitle("");
       setDescription("");
       setLiveLink("");
@@ -108,7 +109,6 @@ export default function AddProjectForm() {
           placeholder="Link til bilde"
           required
         />
-        {/*kilde: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset */}
         <fieldset className="form-tech">
           <legend>Teknologier</legend>
           {TECHNOLOGIES.map((tech) => (
