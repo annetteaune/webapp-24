@@ -19,11 +19,9 @@ export const ProjectSchema = z.object({
   imageLink: z.string(),
   liveLink: z.string(),
   codeLink: z.string(),
-  publishedAt: z.string().refine((date) => validateDate(date), {
-    message: "Ugyldig datoformat",
-  }),
+  publishedAt: z.date(),
   privateBox: z.boolean(),
-  technologies: z.array(TechnologySchema),
+  technologies: z.array(TechnologySchema).optional(),
 });
 
 export const ProjectCreateSchema = ProjectSchema.omit({ id: true });

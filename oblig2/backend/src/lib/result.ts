@@ -1,18 +1,15 @@
-import { Result } from "../features/projects/types/types";
+import type { ResultFn } from "@/types";
 
-export class ResultHandler {
-  static success<T>(data: T): Result<T> {
-    return {
-      success: true,
-      data,
-    };
-  }
+export const ResultHandler: ResultFn = {
+  success(data, pagination) {
+    return { success: true, data, ...(pagination ?? {}) };
+  },
+  failure(error: unknown, code = "INTERNAL_SERVER_ERROR") {
+    let err = "";
+    if (typeof error === "string") err = error;
+    if (typeof error === "object" && err !== null) err = JSON.stringify(error);
+    if (error instanceof Error) err = error.message;
 
-  static failure(error: string, code: string): Result<never> {
-    return {
-      success: false,
-      error,
-      code,
-    };
-  }
-}
+    return { success: false, error: { message: err, code } };
+  },
+};

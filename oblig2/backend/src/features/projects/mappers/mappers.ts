@@ -1,6 +1,6 @@
-import { Project } from "@/types";
-import type { DbProject, DbTechnologies } from "../types/types";
-import { randomUUID } from "crypto";
+import { Entries } from "@/types";
+import type { DbProject, Project } from "../types/types";
+import { createId } from "@/lib/id";
 
 export const fromDb = (project: DbProject) => {
   return {
@@ -10,42 +10,58 @@ export const fromDb = (project: DbProject) => {
     imageLink: project.imageLink,
     liveLink: project.liveLink,
     codeLink: project.codeLink,
-    publishedAt: new Date(project.publishedAt).toISOString(),
+    publishedAt: new Date(project.publishedAt),
     privateBox: project.privateBox,
-    technologies: project.technologies.split(","),
   };
 };
 
 export const createProject = (project: Partial<Project>): Project => {
   return {
-    id: project.id ?? randomUUID(),
+    id: project.id ?? createId(),
     title: project.title ?? "",
     description: project.description ?? "",
     imageLink: project.imageLink ?? "#",
     liveLink: project.liveLink ?? "#",
     codeLink: project.codeLink ?? "#",
-    publishedAt:
-      typeof project.publishedAt === "string"
-        ? project.publishedAt
-        : (project.publishedAt ?? new Date()).toISOString(),
+    publishedAt: project.publishedAt ?? new Date(),
     privateBox: project.privateBox ?? false,
-    technologies: project.technologies ?? [],
   };
 };
-export const toDb = (data: Partial<Project>): DbProject => {
+
+export const toDb = (data: Project) => {
   const project = createProject(data);
+  const entries = Object.entries(project) as Entries<Project>;
+  const dbProject = {} as DbProject;
 
-  const dbProject: DbProject = {
-    id: project.id,
-    title: project.title,
-    description: project.description,
-    imageLink: project.imageLink,
-    liveLink: project.liveLink,
-    codeLink: project.codeLink,
-    publishedAt: project.publishedAt,
-    privateBox: project.privateBox,
-    technologies: project.technologies.join(","),
-  };
-
+  for (const entry of entries) {
+    if (!entry) continue;
+    const [key, value] = entry;
+    switch (key) {
+      case "id":
+        dbProject.id = value;
+        break;
+      case "title":
+        dbProject.title = value;
+        break;
+      case "description":
+        dbProject.description = value;
+        break;
+      case "imageLink":
+        dbProject.imageLink = value;
+        break;
+      case "liveLink":
+        dbProject.liveLink = value;
+        break;
+      case "codeLink":
+        dbProject.codeLink = value;
+        break;
+      case "publishedAt":
+        dbProject.publishedAt = value?.toISOString() ?? null;
+        break;
+      case "privateBox":
+        dbProject.privateBox = value;
+        break;
+    }
+  }
   return dbProject;
 };

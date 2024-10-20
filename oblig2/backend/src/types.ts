@@ -19,11 +19,9 @@ export const ProjectSchema = z.object({
   imageLink: z.string(),
   liveLink: z.string(),
   codeLink: z.string(),
-  publishedAt: z.string().refine((date) => validateDate(date), {
-    message: "Ugyldig datoformat",
-  }),
+  publishedAt: z.date(),
   privateBox: z.boolean(),
-  technologies: z.array(TechnologySchema),
+  technologies: z.array(TechnologySchema).optional(),
 });
 
 export const ProjectCreateSchema = ProjectSchema.omit({ id: true });
@@ -33,3 +31,42 @@ export const ProjectArraySchema = z.array(ProjectSchema);
 export type Project = z.infer<typeof ProjectSchema>;
 
 export type CreateProject = z.infer<typeof ProjectCreateSchema>;
+
+import type { ErrorCode } from "@/lib/error";
+
+export type ID = ReturnType<typeof crypto.randomUUID>;
+
+export type Paginated = {
+  offset: number;
+  page: number;
+  pages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+};
+
+export type Data<T> = {
+  success: true;
+  data: T;
+  pagination?: Paginated;
+};
+
+type Err = {
+  code: ErrorCode;
+  message: string;
+};
+
+export type Error = {
+  success: false;
+  error: Err;
+};
+
+export type Result<T> = Data<T> | Error;
+
+export type ResultFn = {
+  success: <T>(data: T, pagination?: Paginated) => Data<T>;
+  failure: (error: unknown, code: ErrorCode) => Error;
+};
+
+export type Entries<T> = {
+  [K in keyof T]: [K, T[K]];
+}[keyof T][];

@@ -29,7 +29,7 @@ export const seed = async (db: Database) => {
   const projects = JSON.parse(file) as Project[];
 
   const insertProject = db.prepare(`
-    INSERT INTO projects (id, title, description, image_link, live_link, code_link, published_at, private_box)
+    INSERT INTO projects (id, title, description, imageLink, liveLink, codeLink, publishedAt, privateBox)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `);
 

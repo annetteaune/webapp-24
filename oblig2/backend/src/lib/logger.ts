@@ -14,6 +14,7 @@ export interface Logger {
   error: LogMethod;
   fatal: LogMethod;
 }
+
 export function makeLogger(config?: ApplicationConfig): Logger {
   const env = config?.env ?? "development";
   return pino({

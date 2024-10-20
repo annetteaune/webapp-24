@@ -20,4 +20,5 @@ export const student: Student = {
 };
 
 // URLs
-export const PROJECTS = "http://localhost:3000/projects";
+export const PROJECTS = "http://localhost:3000/v1/projects";
+export const TECH = "http://localhost:3000/v1/tech";

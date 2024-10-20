@@ -1,23 +1,22 @@
-import { ResultHandler } from "@/lib/result";
-import { Result } from "../types/types";
-import { CreateProject, UpdateProject } from "../types/types";
+import { Entries } from "@/types";
+import { createProject } from "../mappers/mappers";
+import { Project } from "../types/types";
 
-export const validateProjectData = (
-  data: CreateProject | UpdateProject
-): Result<null> => {
-  if (data.title && data.title.trim().length < 3) {
-    return ResultHandler.failure(
-      "Tittel må ha minst 3 bokstaver",
-      "INVALID_TITLE"
-    );
-  }
+export const isValidProject = (data: Partial<Project>): boolean => {
+  const habit = createProject(data);
 
-  if (data.description && data.description.trim().length < 3) {
-    return ResultHandler.failure(
-      "Beskrivelse må ha minst 3 bokstaver",
-      "INVALID_DESCRIPTION"
-    );
-  }
+  return (Object.entries(habit) as Entries<Partial<Project>>).every((entry) => {
+    if (!entry) return false;
 
-  return ResultHandler.success(null);
+    const [key, value] = entry;
+
+    switch (key) {
+      case "title":
+        return value && value.length > 3;
+      case "description":
+        return value && value.length > 3;
+      default:
+        return true;
+    }
+  });
 };

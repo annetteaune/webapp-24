@@ -1,6 +1,6 @@
 import { ofetch } from "ofetch";
-import { Project } from "../types";
-import { PROJECTS } from "../config";
+import { Project, Technology } from "../types";
+import { PROJECTS, TECH } from "../config";
 
 // hente prosjekter
 export const getProjects = async (): Promise<Project[]> => {
@@ -42,5 +42,16 @@ export const addProject = async (
   } catch (error) {
     console.error("Feil ved lagring av prosjekt", error);
     throw error;
+  }
+};
+
+//hente tech
+export const getTech = async (): Promise<Technology[]> => {
+  try {
+    const data = await ofetch(TECH);
+    return data;
+  } catch (error) {
+    console.error("Feil ved henting av prosjekter", error);
+    return [];
   }
 };

@@ -1,49 +1,68 @@
-import type { CreateProject, Result, UpdateProject } from "../types/types";
 import {
-  createProjectRepository,
+  projectRepository,
   type ProjectRepository,
 } from "../repository/repository";
-import type { Project } from "../types/types";
+import type {
+  CreateProjectDto,
+  Project,
+  UpdateProjectDto,
+} from "../types/types";
 import { createProject } from "../mappers/mappers";
-import db from "@/db/db";
-import { validateProjectData } from "../utils/validator";
+import { isValidProject } from "../utils/validator";
+import { Result } from "@/types";
+import { TechService, Technology } from "@/features/technologies/types/types";
+import { ResultHandler } from "@/lib/result";
+import { techRepository } from "@/features/technologies/repository/repository";
 
-export const createProjectService = (projectRepository: ProjectRepository) => {
+export const createProjectService = (
+  projectRepository: ProjectRepository,
+  techService: TechService
+) => {
+  //hente porsjekt basert på ID
+  const getById = async (id: string): Promise<Result<Project>> => {
+    return projectRepository.getById(id);
+  };
+
   // hente alle
   const list = async (): Promise<Result<Project[]>> => {
     return projectRepository.list();
   };
 
-  // opprette nytt prosjekt
-  const create = async (data: CreateProject): Promise<Result<string>> => {
-    const validationResult = validateProjectData(data);
-    if (!validationResult.success) {
-      return validationResult;
-    }
+  const listProjectTech = async (
+    id: string
+  ): Promise<Result<Project & { tech: Technology[] }>> => {
+    const project = await projectRepository.getById(id);
+    const tech = await techService.listByProject(id);
+    if (!tech.success)
+      return ResultHandler.failure(tech.error.message, tech.error.code);
+    if (!project.success)
+      return ResultHandler.failure(project.error.message, project.error.code);
 
+    return ResultHandler.success({ ...project.data, tech: tech.data });
+  };
+
+  // opprette nytt prosjekt
+  const create = async (data: CreateProjectDto): Promise<Result<string>> => {
     const project = createProject(data);
+
+    if (!isValidProject(project)) {
+      return ResultHandler.failure("Invalid project data", "BAD_REQUEST");
+    }
     return projectRepository.create(project);
   };
 
   // oppdatere eksisterende prosjekt
-  const update = async (data: UpdateProject) => {
+  const update = async (data: UpdateProjectDto) => {
     const project = createProject({ ...data });
 
-    const validationResult = validateProjectData(data);
-    if (!validationResult.success) {
-      return validationResult;
-    }
+    if (!isValidProject(project))
+      return ResultHandler.failure("Invalid project data", "BAD_REQUEST");
 
     return projectRepository.update(project);
   };
-
-  //hente porsjekt basert på ID
-  const getById = async (id: string): Promise<Result<Project | undefined>> => {
-    return await projectRepository.getById(id);
-  };
-
-  const remove = async (id: string): Promise<Result<string>> => {
-    return await projectRepository.remove(id);
+  // fjerne prosjekt
+  const remove = async (id: string) => {
+    return projectRepository.remove(id);
   };
 
   return {
@@ -52,9 +71,13 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
     update,
     getById,
     remove,
+    listProjectTech,
   };
 };
 
-export const projectService = createProjectService(createProjectRepository(db));
+export const projectService = createProjectService(
+  projectRepository,
+  techRepository
+);
 
 export type ProjectService = ReturnType<typeof createProjectService>;

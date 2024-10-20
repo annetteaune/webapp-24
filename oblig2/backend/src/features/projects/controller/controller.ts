@@ -1,11 +1,23 @@
 import { Hono } from "hono";
 
-import { ProjectService, projectService } from "../service/service";
 import type { HonoEnv } from "@/app";
-import { UpdateProject } from "../types/types";
+import { projectService, ProjectService } from "../service/service";
+import { UpdateProjectDto } from "../types/types";
+import { errorResponse } from "@/lib/error";
 
 export const createProjectController = (projectService: ProjectService) => {
   const app = new Hono<HonoEnv>();
+
+  // liste alle prosjetker
+  app.get("/", async (c) => {
+    const result = await projectService.list();
+    if (!result.success)
+      return c.json(
+        { error: "Feil ved henting av prosjekter" },
+        { status: 500 }
+      );
+    return c.json(result);
+  });
 
   // hente ut basert på ID
   app.get("/:id", async (c) => {
@@ -33,7 +45,7 @@ export const createProjectController = (projectService: ProjectService) => {
   app.patch("/:id", async (c) => {
     const id = c.req.param("id");
     const partialData = await c.req.json();
-    const updateData: Partial<UpdateProject> = { ...partialData, id };
+    const updateData: Partial<UpdateProjectDto> = { ...partialData, id };
     const result = await projectService.update(updateData);
     if (!result.success) {
       return c.json(
@@ -54,6 +66,16 @@ export const createProjectController = (projectService: ProjectService) => {
         { status: 400 }
       );
     }
+    return c.json(result);
+  });
+
+  // hente tech per prosjekt
+
+  app.get("/:id/tech", async (c) => {
+    const id = c.req.param("id");
+    const result = await projectService.listProjectTech(id);
+    if (!result.success)
+      return errorResponse(c, result.error.code, result.error.message);
     return c.json(result);
   });
   return app;
