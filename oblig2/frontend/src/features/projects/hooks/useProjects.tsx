@@ -44,21 +44,23 @@ export const useProjects = () => {
   useEffectOnce(fetchData);
 
   const add = async (data: Partial<Project>) => {
-    const { title = "" } = data;
-
     try {
       setStatus("loading");
-      await projectsApi.create({ title });
+      console.log("Adding project with data:", JSON.stringify(data, null, 2));
+      await projectsApi.create(data);
       await fetchData();
       setStatus("success");
     } catch (error) {
       setStatus("error");
-      setError("Feilet under opprettelse av prosjekt");
+      setError("Failed to create project");
+      console.error("Error details:", error);
+      if (error instanceof Error) {
+        console.error("Error message:", error.message);
+      }
     } finally {
       resetToIdle();
     }
   };
-
   const remove = async (id: string) => {
     try {
       setStatus("loading");

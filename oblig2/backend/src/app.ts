@@ -46,9 +46,9 @@ export const makeApp = (
   });
 
   app.route("/v1/projects", projectController);
-  app.route("/v1/projects:id", projectController);
+  //app.route("/v1/projects/:id", projectController);
   app.route("/v1/technologies", techController);
-  app.route("/v1/technologies:id", techController);
+  //app.route("/v1/technologies/:id", techController);
 
   app.onError(handleError);
 

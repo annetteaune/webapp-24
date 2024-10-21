@@ -2,8 +2,12 @@ import { useState, FormEvent } from "react";
 import { useProjects } from "../features/projects/hooks/useProjects";
 import { handleInputChange } from "../services/formServices";
 import { TECHNOLOGIES } from "../services/formServices";
-import { Project } from "../types";
-import { validateProjects } from "../features/projects/helpers/schema";
+
+import {
+  projectSchema,
+  validateProject,
+} from "../features/projects/helpers/schema";
+import { z } from "zod";
 
 export default function AddProjectForm() {
   const { add } = useProjects();
@@ -28,7 +32,8 @@ export default function AddProjectForm() {
   const addProject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const newProject: Partial<Project> = {
+    const newProject: z.infer<typeof projectSchema> = {
+      id: crypto.randomUUID(),
       title,
       description,
       liveLink,
@@ -41,11 +46,17 @@ export default function AddProjectForm() {
       ),
     };
 
-    if (!validateProjects(newProject)) return;
+    const validationResult = validateProject(newProject);
+    if (!validationResult.success) {
+      console.error("Validation failed:", validationResult.error);
+      return;
+    }
+
+    console.log("Sending project data:", newProject);
 
     try {
       await add(newProject);
-      // reset form after the project is saved
+      // Reset form after the project is saved
       setTitle("");
       setDescription("");
       setLiveLink("");

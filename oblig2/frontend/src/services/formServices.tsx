@@ -10,13 +10,13 @@ export const handleInputChange =
   };
 
 export const TECHNOLOGIES: Technology[] = [
-  { id: "1", name: "React" },
-  { id: "2", name: "Node.js" },
-  { id: "3", name: "TypeScript" },
-  { id: "4", name: "Java" },
-  { id: "5", name: "Python" },
-  { id: "6", name: "JavaScript" },
-  { id: "7", name: "SQL" },
-  { id: "8", name: "CSS" },
-  { id: "9", name: "Tailwind" },
+  { id: "42ee207f-2c4e-4bec-b172-322ec494afd1", name: "React" },
+  { id: "42ee207f-2c4e-2bec-b172-322ec494afd1", name: "Node.js" },
+  { id: "42ee203f-2c4e-2bec-b172-322ec494afd1", name: "TypeScript" },
+  { id: "42ee207f-2c8e-2bec-b172-322ec494afd1", name: "Java" },
+  { id: "42ee205f-2c4e-2bec-b172-322ec494afd1", name: "Python" },
+  { id: "42ee207f-2c4e-6bec-b172-322ec494afd1", name: "JavaScript" },
+  { id: "42ee207f-2c4e-2bec-b172-342ec494afd1", name: "SQL" },
+  { id: "42ee507f-2c4e-2bec-b172-322ec494afd1", name: "CSS" },
+  { id: "42ee607f-2c4e-2bec-b172-322ec494afd1", name: "Tailwind" },
 ];

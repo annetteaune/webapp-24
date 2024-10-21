@@ -2,7 +2,7 @@ import { ofetch } from "ofetch";
 
 import { endpoints } from "../../../config";
 import { Project, Technology } from "../../../types";
-import { validateProject } from "../../../services/validation";
+//import { validateProject } from "../../../services/validation";
 import { validateProjects } from "../helpers/schema";
 
 const url = endpoints.projects;
@@ -19,17 +19,49 @@ const remove = async (id: string) => {
   }
 };
 
-const create = async (data: Pick<Project, "title">) => {
+const create = async (data: Partial<Project>): Promise<Project> => {
   try {
-    const createdProject = await ofetch(url, {
+    console.log("Original project data:", JSON.stringify(data, null, 2));
+
+    const projectData = {
+      ...data,
+      publishedAt:
+        data.publishedAt instanceof Date
+          ? data.publishedAt.toISOString()
+          : typeof data.publishedAt === "string"
+          ? new Date(data.publishedAt).toISOString()
+          : new Date().toISOString(),
+    };
+
+    console.log(
+      "Transformed project data:",
+      JSON.stringify(projectData, null, 2)
+    );
+
+    const response = await fetch(`${url}`, {
       method: "POST",
-      body: data,
+      body: JSON.stringify(projectData),
+      headers: {
+        "Content-Type": "application/json",
+      },
       credentials: "include",
     });
 
-    return createdProject;
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server error response:", errorText);
+      throw new Error(
+        `HTTP error! status: ${response.status}, message: ${errorText}`
+      );
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error(error);
+    console.error("Error creating project:", error);
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+    }
+    throw error;
   }
 };
 

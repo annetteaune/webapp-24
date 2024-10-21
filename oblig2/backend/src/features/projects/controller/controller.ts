@@ -30,15 +30,34 @@ export const createProjectController = (projectService: ProjectService) => {
 
   // opprette prosjekt
   app.post("/", async (c) => {
-    const data = await c.req.json();
-    const result = await projectService.create(data);
-    if (!result.success) {
+    try {
+      const body = await c.req.json();
+      console.log("Received project data:", JSON.stringify(body, null, 2));
+      console.log("publishedAt type:", typeof body.publishedAt);
+      console.log("publishedAt value:", body.publishedAt);
+
+      const result = await projectService.create(body);
+      if (!result.success) {
+        console.error("Project creation failed:", result.error);
+        return c.json(
+          { error: "Failed to create project", details: result.error },
+          { status: 400 }
+        );
+      }
+      return c.json(result, { status: 201 });
+    } catch (error) {
+      console.error("Error in project creation:", error);
+      if (error instanceof Error) {
+        console.error("Error stack:", error.stack);
+      }
       return c.json(
-        { error: "Feil ved oppretting av prosjekt" },
-        { status: 400 }
+        {
+          error: "Internal server error",
+          details: error instanceof Error ? error.message : "Unknown error",
+        },
+        { status: 500 }
       );
     }
-    return c.json(result, { status: 201 });
   });
 
   // oppdatere prosjekt

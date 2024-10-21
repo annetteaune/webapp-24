@@ -19,7 +19,7 @@ export const ProjectSchema = z.object({
   imageLink: z.string(),
   liveLink: z.string(),
   codeLink: z.string(),
-  publishedAt: z.date(),
+  publishedAt: z.string(),
   privateBox: z.boolean(),
   technologies: z.array(TechnologySchema).optional(),
 });

@@ -3,19 +3,31 @@ import { techSchema } from "../../technologies/helpers/schema";
 
 export { projectSchema, projectsSchema };
 
-const projectSchema = z
-  .object({
-    id: z.string().uuid(),
-    title: z.string(),
-    description: z.string(),
-    imageLink: z.string(),
-    liveLink: z.string(),
-    codeLink: z.string(),
-    privateBox: z.boolean(),
-  })
-  .extend({ technologies: z.array(techSchema).optional() });
+const projectSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string(),
+  description: z.string(),
+  imageLink: z.string(),
+  liveLink: z.string(),
+  codeLink: z.string(),
+  privateBox: z.boolean(),
+  publishedAt: z.coerce.date(),
+  technologies: z.array(techSchema).optional(),
+});
 
 const projectsSchema = z.array(projectSchema);
+
+export function validateProject(data: unknown) {
+  const result = projectSchema.safeParse(data);
+
+  if (!result.success) {
+    console.error("Validation errors:", result.error.errors);
+  } else {
+    console.log("Validation succeeded:", result.data);
+  }
+
+  return result;
+}
 
 export function validateProjects(data: unknown) {
   const result = projectsSchema.safeParse(data);
