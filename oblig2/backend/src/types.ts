@@ -11,7 +11,7 @@ export type Technology = z.infer<typeof TechnologySchema>;
 
 export const TechnologyArraySchema = z.array(TechnologySchema);
 
-// Schema for prosjekt
+// schema for prosjekt
 export const ProjectSchema = z.object({
   id: z.string(),
   title: z.string(),

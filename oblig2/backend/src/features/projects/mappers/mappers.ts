@@ -24,7 +24,7 @@ export const createProject = (project: Partial<Project>): Project => {
     liveLink: project.liveLink ?? "#",
     codeLink: project.codeLink ?? "#",
     publishedAt: project.publishedAt ?? new Date(),
-    privateBox: project.privateBox ?? false,
+    privateBox: project.privateBox ?? 0,
   };
 };
 

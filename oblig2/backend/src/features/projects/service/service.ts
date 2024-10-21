@@ -18,14 +18,14 @@ export const createProjectService = (
   projectRepository: ProjectRepository,
   techService: TechService
 ) => {
-  // Hente prosjekt basert på ID
+  // hente prosjekt basert på ID
   const getById = async (id: string): Promise<Result<Project>> => {
     return projectRepository.getById(id);
   };
 
-  // Hente alle prosjekter med tech array
+  // hente alle prosjekter med tech array
   const list = async (): Promise<
-    Result<(Project & { tech: Technology[] })[]>
+    Result<(Project & { technologies: Technology[] })[]>
   > => {
     try {
       const projects = await projectRepository.list();
@@ -36,20 +36,25 @@ export const createProjectService = (
           projects.error.code
         );
       }
+      // formatere fra number til bool
+      const formattedProjects = projects.data.map((project) => ({
+        ...project,
+        privateBox: Boolean(project.privateBox), // konverter 0/1 til boolean
+      }));
 
-      // tech for hvert prosjekt
       const projectsWithTech = await Promise.all(
-        projects.data.map(async (project) => {
+        formattedProjects.map(async (project) => {
           const tech = await techService.listByProject(project.id);
 
           if (!tech.success) {
-            return { ...project, tech: [] }; // tom array som fallback
+            return { ...project, technologies: [] }; // fallback til tom array
           }
 
-          return { ...project, tech: tech.data };
+          return { ...project, technologies: tech.data };
         })
       );
 
+      //TODO error datatype bool/num - appen kjører og klarer jeg ikke finne feilen
       return ResultHandler.success(projectsWithTech);
     } catch (error) {
       return ResultHandler.failure(
@@ -61,7 +66,7 @@ export const createProjectService = (
 
   const listProjectTech = async (
     id: string
-  ): Promise<Result<Project & { tech: Technology[] }>> => {
+  ): Promise<Result<Project & { technologies: Technology[] }>> => {
     const project = await projectRepository.getById(id);
     const tech = await techService.listByProject(id);
     if (!tech.success)
@@ -69,7 +74,7 @@ export const createProjectService = (
     if (!project.success)
       return ResultHandler.failure(project.error.message, project.error.code);
 
-    return ResultHandler.success({ ...project.data, tech: tech.data });
+    return ResultHandler.success({ ...project.data, technologies: tech.data });
   };
 
   // Opprette nytt prosjekt

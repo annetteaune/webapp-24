@@ -9,7 +9,12 @@ export const createTechRepository = (db: DB): TechRepository => {
     projectID: string
   ): Promise<Result<Technology[]>> => {
     try {
-      const query = db.prepare("SELECT * FROM technologies WHERE id = ?;");
+      const query = db.prepare(`
+        SELECT t.id, t.name 
+        FROM technologies t
+        JOIN project_technologies pt ON t.id = pt.technology_id
+        WHERE pt.project_id = ?;
+      `);
       const data = query.all(projectID) as DbTechnologies[];
       return ResultHandler.success(data.map((tech) => fromDb(tech)));
     } catch (error) {
@@ -23,13 +28,19 @@ export const createTechRepository = (db: DB): TechRepository => {
   ): Promise<Result<string>> => {
     try {
       const tech = toDb({ name }, projectID);
-
-      const query = db.prepare(
-        "INSERT INTO technologies (id, name) VALUES (?, ?);"
+      const insertTech = db.prepare(
+        "INSERT OR IGNORE INTO technologies (id, name) VALUES (?, ?);"
       );
-      query.run(projectID, tech.id, tech, name);
+      const linkTechToProject = db.prepare(
+        "INSERT OR IGNORE INTO project_technologies (project_id, technology_id) VALUES (?, ?);"
+      );
 
-      return ResultHandler.success(fromDb(tech).id);
+      db.transaction(() => {
+        insertTech.run(tech.id, tech.name);
+        linkTechToProject.run(projectID, tech.id);
+      })();
+
+      return ResultHandler.success(tech.id);
     } catch (error) {
       return ResultHandler.failure(error, "INTERNAL_SERVER_ERROR");
     }

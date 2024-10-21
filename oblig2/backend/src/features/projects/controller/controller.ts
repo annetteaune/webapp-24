@@ -71,7 +71,7 @@ export const createProjectController = (projectService: ProjectService) => {
 
   // hente tech per prosjekt
 
-  app.get("/:id/tech", async (c) => {
+  app.get("/:id/technologies", async (c) => {
     const id = c.req.param("id");
     const result = await projectService.listProjectTech(id);
     if (!result.success)

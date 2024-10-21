@@ -13,10 +13,18 @@ const projectSchema = z
     codeLink: z.string(),
     privateBox: z.boolean(),
   })
-  .extend({ tech: z.array(techSchema).optional() });
+  .extend({ technologies: z.array(techSchema).optional() });
 
 const projectsSchema = z.array(projectSchema);
 
 export function validateProjects(data: unknown) {
-  return projectsSchema.safeParse(data);
+  const result = projectsSchema.safeParse(data);
+
+  if (!result.success) {
+    console.error("Validation errors:", result.error.errors);
+  } else {
+    console.log("Validation succeeded:", result.data);
+  }
+
+  return result;
 }

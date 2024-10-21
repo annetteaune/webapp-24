@@ -39,35 +39,46 @@ const list = async () => {
       credentials: "include",
     });
 
-    return validateProject(projects.data);
+    return validateProjects(projects.data);
   } catch (error) {
     console.error(error);
   }
 };
 
 const listTech = async (): Promise<{
-  data: (Project & { tech: Technology[] })[];
+  data: (Project & { technologies: Technology[] })[];
 }> => {
   try {
     const projectData = await ofetch(url, {
       credentials: "include",
     });
+
+    console.log("Project data from API:", projectData);
+
     const projects = validateProjects(projectData.data);
 
-    if (!projects.success) return { data: [] };
+    if (!projects.success) {
+      console.error("Validation failed:", projects); // logge valideringsfeil
+      return { data: [] };
+    }
+
+    console.log("Validated projects:", projects.data); // sjekk validert data
+
     const data = await Promise.all(
       projects.data.map((project) =>
-        ofetch(`${url}/${project.id}/tech`, {
+        ofetch(`${url}/${project.id}/technologies`, {
           credentials: "include",
         }).then(({ data }) => data)
       )
     );
+
     return { data };
   } catch (error) {
     console.error(error);
     return { data: [] };
   }
 };
+
 const update = async (id: string, data: Partial<Project>) => {
   try {
     await ofetch(`${url}/${id}`, {

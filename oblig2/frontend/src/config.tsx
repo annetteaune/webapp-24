@@ -21,12 +21,12 @@ export const student: Student = {
 
 // URLs
 export const PROJECTS = "http://localhost:3000/v1/projects";
-export const TECH = "http://localhost:3000/v1/tech";
+export const TECH = "http://localhost:3000/v1/technologies";
 
 const baseUrl = import.meta.env.baseUrl ?? "http://localhost:3000";
 const endpointsV1 = {
   projects: `${baseUrl}/v1/projects`,
-  tech: `${baseUrl}/v1/tech`,
+  tech: `${baseUrl}/v1/technologies`,
 };
 
 export { baseUrl, endpointsV1 as endpoints };

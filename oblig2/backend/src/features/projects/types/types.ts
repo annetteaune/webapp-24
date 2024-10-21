@@ -9,7 +9,7 @@ export type Project = {
   liveLink: string;
   codeLink: string;
   publishedAt: Date;
-  privateBox: boolean;
+  privateBox: number;
 };
 
 export type DbProject = {
@@ -20,7 +20,7 @@ export type DbProject = {
   liveLink: string;
   codeLink: string;
   publishedAt: string;
-  privateBox: boolean;
+  privateBox: number;
 };
 
 export type CreateProjectDto = Pick<

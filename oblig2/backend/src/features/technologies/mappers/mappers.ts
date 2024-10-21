@@ -2,26 +2,26 @@ import { createId } from "@/lib/id";
 import { DbTechnologies, Technology } from "../types/types";
 import { Entries } from "@/types";
 
-export const fromDb = (tech: DbTechnologies) => {
+export const fromDb = (technologies: DbTechnologies) => {
   return {
-    id: tech.id,
-    name: tech.name,
+    id: technologies.id,
+    name: technologies.name,
   };
 };
 
 export const createTech = (
-  tech: Partial<Technology>,
+  technologies: Partial<Technology>,
   projectID: string
 ): Technology => {
   return {
-    id: tech.id ?? createId(),
-    name: tech.name ?? "",
+    id: technologies.id ?? createId(),
+    name: technologies.name ?? "",
   };
 };
 
 export const toDb = (data: Partial<Technology>, projectID: string) => {
-  const tech = createTech(data, projectID);
-  const entries = Object.entries(tech) as Entries<Technology>;
+  const technologies = createTech(data, projectID);
+  const entries = Object.entries(technologies) as Entries<Technology>;
 
   const dbTech = {} as DbTechnologies;
 

@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": "48ee207f-2c4e-4bec-b172-324ec494afd7",
         "title": "Prosjekt 1",
         "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
         "imageLink": "https://picsum.photos/400/250",
@@ -10,21 +10,21 @@
         "privateBox": true,
         "technologies": [
             {
-                "id": "1",
+                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
                 "name": "React"
             },
             {
-                "id": "2",
+                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
                 "name": "Node.js"
             },
             {
-                "id": "3",
+                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
                 "name": "TypeScript"
             }
         ]
     },
     {
-        "id": "2",
+        "id": "42ee207f-2c4e-4bec-b172-322ec494afd7",
         "title": "Prosjekt 2",
         "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
         "imageLink": "https://picsum.photos/400/250",
@@ -34,21 +34,21 @@
         "privateBox": true,
         "technologies": [
             {
-                "id": "1",
+                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
                 "name": "React"
             },
             {
-                "id": "2",
+                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
                 "name": "Node.js"
             },
             {
-                "id": "3",
+                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
                 "name": "TypeScript"
             }
         ]
     },
     {
-        "id": "3",
+        "id": "48ee207f-2c4e-4bec-b172-322ec454afd7",
         "title": "Prosjekt 3",
         "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
         "imageLink": "https://picsum.photos/400/250",
@@ -58,21 +58,21 @@
         "privateBox": true,
         "technologies": [
             {
-                "id": "1",
+                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
                 "name": "React"
             },
             {
-                "id": "2",
+                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
                 "name": "Node.js"
             },
             {
-                "id": "3",
+                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
                 "name": "TypeScript"
             }
         ]
     },
     {
-        "id": "4",
+        "id": "48ee207f-2c5e-4bec-b172-322ec494afd7",
         "title": "Prosjekt 4",
         "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
         "imageLink": "https://picsum.photos/400/250",
@@ -82,15 +82,15 @@
         "privateBox": true,
         "technologies": [
             {
-                "id": "1",
+                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
                 "name": "React"
             },
             {
-                "id": "2",
+                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
                 "name": "Node.js"
             },
             {
-                "id": "3",
+                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
                 "name": "TypeScript"
             }
         ]
@@ -106,11 +106,11 @@
         "privateBox": false,
         "technologies": [
             {
-                "id": "5",
+                "id": "42ee205f-2c4e-2bec-b172-322ec494afd1",
                 "name": "Python"
             },
             {
-                "id": "7",
+                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
                 "name": "SQL"
             }
         ]
