@@ -18,14 +18,45 @@ export const createProjectService = (
   projectRepository: ProjectRepository,
   techService: TechService
 ) => {
-  //hente porsjekt basert på ID
+  // Hente prosjekt basert på ID
   const getById = async (id: string): Promise<Result<Project>> => {
     return projectRepository.getById(id);
   };
 
-  // hente alle
-  const list = async (): Promise<Result<Project[]>> => {
-    return projectRepository.list();
+  // Hente alle prosjekter med tech array
+  const list = async (): Promise<
+    Result<(Project & { tech: Technology[] })[]>
+  > => {
+    try {
+      const projects = await projectRepository.list();
+
+      if (!projects.success) {
+        return ResultHandler.failure(
+          projects.error.message,
+          projects.error.code
+        );
+      }
+
+      // tech for hvert prosjekt
+      const projectsWithTech = await Promise.all(
+        projects.data.map(async (project) => {
+          const tech = await techService.listByProject(project.id);
+
+          if (!tech.success) {
+            return { ...project, tech: [] }; // tom array som fallback
+          }
+
+          return { ...project, tech: tech.data };
+        })
+      );
+
+      return ResultHandler.success(projectsWithTech);
+    } catch (error) {
+      return ResultHandler.failure(
+        "Error fetching projects",
+        "INTERNAL_SERVER_ERROR"
+      );
+    }
   };
 
   const listProjectTech = async (
@@ -41,7 +72,7 @@ export const createProjectService = (
     return ResultHandler.success({ ...project.data, tech: tech.data });
   };
 
-  // opprette nytt prosjekt
+  // Opprette nytt prosjekt
   const create = async (data: CreateProjectDto): Promise<Result<string>> => {
     const project = createProject(data);
 
@@ -51,7 +82,7 @@ export const createProjectService = (
     return projectRepository.create(project);
   };
 
-  // oppdatere eksisterende prosjekt
+  // Oppdatere eksisterende prosjekt
   const update = async (data: UpdateProjectDto) => {
     const project = createProject({ ...data });
 
@@ -60,7 +91,8 @@ export const createProjectService = (
 
     return projectRepository.update(project);
   };
-  // fjerne prosjekt
+
+  // Fjerne prosjekt
   const remove = async (id: string) => {
     return projectRepository.remove(id);
   };
