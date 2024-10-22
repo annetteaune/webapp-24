@@ -56,7 +56,10 @@ export const toDb = (data: Project) => {
         dbProject.codeLink = value;
         break;
       case "publishedAt":
-        dbProject.publishedAt = value?.toISOString() ?? null;
+        dbProject.publishedAt =
+          value instanceof Date
+            ? value.toISOString()
+            : new Date().toISOString();
         break;
       case "privateBox":
         dbProject.privateBox = value;

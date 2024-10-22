@@ -79,7 +79,10 @@ export const createProjectService = (
 
   // Opprette nytt prosjekt
   const create = async (data: CreateProjectDto): Promise<Result<string>> => {
-    const project = createProject(data);
+    const project = createProject({
+      ...data,
+      publishedAt: new Date(),
+    });
 
     if (!isValidProject(project)) {
       return ResultHandler.failure("Invalid project data", "BAD_REQUEST");
