@@ -2,27 +2,29 @@ import { ofetch } from "ofetch";
 
 import { endpoints } from "../../../config";
 import { Project, Technology } from "../../../types";
-//import { validateProject } from "../../../services/validation";
 import { validateProjects } from "../helpers/schema";
 
 const url = endpoints.projects;
 
-const remove = async (id: string) => {
+const remove = async (id: string): Promise<void> => {
   try {
-    await ofetch(`${url}/${id}`, {
+    const response = await fetch(`${url}/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error?.message || "Failed to delete project");
+    }
   } catch (error) {
-    console.error(error);
+    console.error("Error deleting project:", error);
     throw error;
   }
 };
 
 const create = async (data: Partial<Project>): Promise<Project> => {
   try {
-    console.log("Original project data:", JSON.stringify(data, null, 2));
-
     const projectData = {
       ...data,
       publishedAt:
@@ -32,11 +34,6 @@ const create = async (data: Partial<Project>): Promise<Project> => {
           ? new Date(data.publishedAt).toISOString()
           : new Date().toISOString(),
     };
-
-    console.log(
-      "Transformed project data:",
-      JSON.stringify(projectData, null, 2)
-    );
 
     const response = await fetch(`${url}`, {
       method: "POST",
@@ -65,19 +62,7 @@ const create = async (data: Partial<Project>): Promise<Project> => {
   }
 };
 
-const list = async () => {
-  try {
-    const projects = await ofetch(url, {
-      credentials: "include",
-    });
-
-    return validateProjects(projects.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const listTech = async (): Promise<{
+const list = async (): Promise<{
   data: (Project & { technologies: Technology[] })[];
 }> => {
   try {
@@ -85,16 +70,12 @@ const listTech = async (): Promise<{
       credentials: "include",
     });
 
-    console.log("Project data from API:", projectData);
-
     const projects = validateProjects(projectData.data);
 
     if (!projects.success) {
       console.error("Validation failed:", projects); // logge valideringsfeil
       return { data: [] };
     }
-
-    console.log("Validated projects:", projects.data); // sjekk validert data
 
     const data = await Promise.all(
       projects.data.map((project) =>
@@ -123,60 +104,4 @@ const update = async (id: string, data: Partial<Project>) => {
   }
 };
 
-export default { remove, create, list, update, listTech };
-/*
-
-// hente prosjekter
-export const getProjects = async (): Promise<Project[]> => {
-  try {
-    const data = await ofetch(PROJECTS);
-    return data;
-  } catch (error) {
-    console.error("Feil ved henting av prosjekter", error);
-    return [];
-  }
-};
-
-// slette prosjekt
-export const deleteProject = async (id: string) => {
-  try {
-    const response = await ofetch(PROJECTS + `${id}`, {
-      method: "DELETE",
-    });
-    return response;
-  } catch (error) {
-    console.error("Feil ved sletting av prosjekt", error);
-    throw error;
-  }
-};
-
-//legge til prosjekt
-export const addProject = async (
-  newProject: Omit<Project, "id">
-): Promise<Project> => {
-  try {
-    const response = await ofetch(PROJECTS, {
-      method: "POST",
-      body: JSON.stringify(newProject),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    return response;
-  } catch (error) {
-    console.error("Feil ved lagring av prosjekt", error);
-    throw error;
-  }
-};
-
-//hente tech
-export const getTech = async (): Promise<Technology[]> => {
-  try {
-    const data = await ofetch(TECH);
-    return data;
-  } catch (error) {
-    console.error("Feil ved henting av teknologier", error);
-    return [];
-  }
-};
- */
+export default { remove, create, update, list };

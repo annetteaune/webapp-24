@@ -52,11 +52,9 @@ export default function AddProjectForm() {
       return;
     }
 
-    console.log("Sending project data:", newProject);
-
     try {
       await add(newProject);
-      // Reset form after the project is saved
+      // reset skjema etter lagring
       setTitle("");
       setDescription("");
       setLiveLink("");

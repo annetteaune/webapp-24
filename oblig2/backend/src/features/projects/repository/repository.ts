@@ -101,15 +101,24 @@ export const createProjectRepository = (db: DB) => {
     }
   };
 
-  // slette prosjekt basert på ID
+  // slette prosjekt inkl relaterte tech, basert på ID
   const remove = async (id: string): Promise<Result<string>> => {
     try {
       const projectExists = await exist(id);
       if (!projectExists)
         return ResultHandler.failure("Project not found", "NOT_FOUND");
 
-      const query = db.prepare("DELETE FROM projects WHERE id = ?");
-      query.run(id);
+      const deleteProjectTech = db.prepare(
+        "DELETE FROM project_technologies WHERE project_id = ?"
+      );
+      const deleteProject = db.prepare("DELETE FROM projects WHERE id = ?");
+
+      const transaction = db.transaction(() => {
+        deleteProjectTech.run(id);
+        deleteProject.run(id);
+      });
+
+      transaction();
 
       return ResultHandler.success(id);
     } catch (error) {

@@ -28,14 +28,14 @@ export const useProjects = () => {
   const fetchData = useCallback(async () => {
     try {
       setStatus("loading");
-      const result = await projectsApi.listTech();
+      const result = await projectsApi.list();
 
       setData(result?.data ?? []);
 
       setStatus("success");
     } catch (error) {
       setStatus("error");
-      setError("Feil ved henting av data");
+      setError("Error fetching data");
     } finally {
       resetToIdle();
     }
@@ -46,7 +46,6 @@ export const useProjects = () => {
   const add = async (data: Partial<Project>) => {
     try {
       setStatus("loading");
-      console.log("Adding project with data:", JSON.stringify(data, null, 2));
       await projectsApi.create(data);
       await fetchData();
       setStatus("success");
@@ -65,16 +64,19 @@ export const useProjects = () => {
     try {
       setStatus("loading");
       await projectsApi.remove(id);
-      await fetchData();
+
+      // oppdatere local state for å fjerne det slettede prosjektet
+      setData((prevData) => prevData.filter((project) => project.id !== id));
+
       setStatus("success");
     } catch (error) {
       setStatus("error");
-      setError("Feil under fjerning av prosjekt");
+      setError("Failed to delete project");
+      throw error;
     } finally {
       resetToIdle();
     }
   };
-
   const update = async (id: string, data: Partial<Project>) => {
     try {
       setStatus("loading");
@@ -83,7 +85,7 @@ export const useProjects = () => {
       setStatus("success");
     } catch (error) {
       setStatus("error");
-      setError("Oppdatering av prosjekt mislykket");
+      setError("Failed updating project");
     } finally {
       resetToIdle();
     }
@@ -105,61 +107,3 @@ export const useProjects = () => {
     },
   };
 };
-
-/*export const useProjects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchProjects = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const fetchedProjects = await getProjects();
-      setProjects(fetchedProjects);
-    } catch (error) {
-      setError("Feil ved henting av prosjekter");
-      console.error("Feil ved henting av prosjekter:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchProjects();
-  }, [fetchProjects]);
-
-  const handleDelete = async (id: string) => {
-    try {
-      await deleteProject(id);
-      setProjects((prevProjects) =>
-        prevProjects.filter((project) => project.id !== id)
-      );
-    } catch (error) {
-      console.error("Feil ved sletting av prosjekter", error);
-      setError("Feil ved sletting av prosjekter");
-    }
-  };
-
-  const handleAdd = async (newProject: Omit<Project, "id">) => {
-    try {
-      const addedProject = await addProject(newProject);
-      setProjects((prevProjects) => [...prevProjects, addedProject]);
-      return addedProject;
-    } catch (error) {
-      console.error("Feil ved lagring av prosjekt", error);
-      setError("Feil ved lagring av prosjekt");
-      throw error;
-    }
-  };
-
-  return {
-    projects,
-    isLoading,
-    error,
-    handleDelete,
-    handleAdd,
-    refreshProjects: fetchProjects,
-  };
-};
-*/

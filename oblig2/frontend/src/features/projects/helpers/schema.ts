@@ -22,8 +22,6 @@ export function validateProject(data: unknown) {
 
   if (!result.success) {
     console.error("Validation errors:", result.error.errors);
-  } else {
-    console.log("Validation succeeded:", result.data);
   }
 
   return result;
@@ -34,8 +32,6 @@ export function validateProjects(data: unknown) {
 
   if (!result.success) {
     console.error("Validation errors:", result.error.errors);
-  } else {
-    console.log("Validation succeeded:", result.data);
   }
 
   return result;

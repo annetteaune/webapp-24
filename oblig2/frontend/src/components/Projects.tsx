@@ -1,6 +1,7 @@
 import AddProjectForm from "./AddProjectForm";
 import ProjectCard from "./ProjectCards";
 import { Project } from "../types";
+import { useState } from "react";
 
 interface ProjectsProps {
   projects: Project[];
@@ -8,7 +9,18 @@ interface ProjectsProps {
 }
 
 export default function Projects({ projects, onDelete }: ProjectsProps) {
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const projectCount = projects.length;
+
+  const handleDelete = async (id: string) => {
+    try {
+      setDeleteError(null);
+      await onDelete(id);
+    } catch (error) {
+      setDeleteError("Failed to delete project. Please try again.");
+      console.error("Delete error:", error);
+    }
+  };
 
   return (
     <>
@@ -17,6 +29,7 @@ export default function Projects({ projects, onDelete }: ProjectsProps) {
       </h2>
       <section id="content-wrapper">
         <AddProjectForm />
+        {deleteError && <p className="error-message">{deleteError}</p>}
         {projects.length === 0 ? (
           <p>Ingen prosjekter</p>
         ) : (
@@ -24,7 +37,7 @@ export default function Projects({ projects, onDelete }: ProjectsProps) {
             <ProjectCard
               key={project.id}
               project={project}
-              onDelete={onDelete}
+              onDelete={handleDelete}
             />
           ))
         )}

@@ -6,11 +6,7 @@ import { student } from "../config";
 import { useProjects } from "../features/projects/hooks/useProjects";
 
 const FrontPage: React.FC = () => {
-  const { data: projects, remove: handleDelete, status, error } = useProjects();
-
-  console.log("Projects data:", projects);
-  console.log("Projects status:", status);
-  console.log("Projects error:", error);
+  const { data: projects, remove: handleDelete } = useProjects();
 
   return (
     <>
