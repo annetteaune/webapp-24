@@ -9,7 +9,7 @@ export type Project = {
   liveLink: string;
   codeLink: string;
   publishedAt: Date;
-  privateBox: number;
+  privateBox: boolean;
 };
 
 export type DbProject = {
