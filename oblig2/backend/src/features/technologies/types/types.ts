@@ -13,11 +13,19 @@ export type DbTechnologies = {
 export type TechService = {
   listByProject: (id: string) => Promise<Result<Technology[]>>;
   addTechToProject: (id: string, name: string) => Promise<Result<string>>;
+  linkTechToProject: (
+    projectId: string,
+    techId: string
+  ) => Promise<Result<void>>;
 };
 
 export type TechRepository = {
   listByProject: (id: string) => Promise<Result<Technology[]>>;
   addTechToProject: (id: string, name: string) => Promise<Result<string>>;
+  linkTechToProject: (
+    projectId: string,
+    techId: string
+  ) => Promise<Result<void>>;
 };
 
 export type CreateTechDto = Pick<Technology, "id" | "name">;

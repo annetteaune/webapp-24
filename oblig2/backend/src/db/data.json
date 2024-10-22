@@ -1,118 +1,86 @@
-[
-    {
-        "id": "48ee207f-2c4e-4bec-b172-324ec494afd7",
-        "title": "Prosjekt 1",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "imageLink": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#",
-        "publishedAt": "2024-10-17T22:50:38+02:00",
-        "privateBox": true,
-        "technologies": [
-            {
-                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
-                "name": "React"
-            },
-            {
-                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
-                "name": "Node.js"
-            },
-            {
-                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
-                "name": "TypeScript"
-            }
-        ]
-    },
-    {
-        "id": "42ee207f-2c4e-4bec-b172-322ec494afd7",
-        "title": "Prosjekt 2",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "imageLink": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#",
-        "publishedAt": "2024-10-17T22:50:38+02:00",
-        "privateBox": true,
-        "technologies": [
-            {
-                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
-                "name": "React"
-            },
-            {
-                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
-                "name": "Node.js"
-            },
-            {
-                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
-                "name": "TypeScript"
-            }
-        ]
-    },
-    {
-        "id": "48ee207f-2c4e-4bec-b172-322ec454afd7",
-        "title": "Prosjekt 3",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "imageLink": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#",
-        "publishedAt": "2024-10-17T22:50:38+02:00",
-        "privateBox": true,
-        "technologies": [
-            {
-                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
-                "name": "React"
-            },
-            {
-                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
-                "name": "Node.js"
-            },
-            {
-                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
-                "name": "TypeScript"
-            }
-        ]
-    },
-    {
-        "id": "48ee207f-2c5e-4bec-b172-322ec494afd7",
-        "title": "Prosjekt 4",
-        "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
-        "imageLink": "https://picsum.photos/400/250",
-        "liveLink": "#",
-        "codeLink": "#",
-        "publishedAt": "2024-10-17T22:50:38+02:00",
-        "privateBox": true,
-        "technologies": [
-            {
-                "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
-                "name": "React"
-            },
-            {
-                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
-                "name": "Node.js"
-            },
-            {
-                "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
-                "name": "TypeScript"
-            }
-        ]
-    },
-    {
-        "id": "48ee207f-2c4e-4bec-b172-322ec494afd7",
-        "title": "Test",
-        "description": "test test test",
-        "imageLink": "https://picsum.photos/400/250",
-        "liveLink": "https://picsum.photos/400/250",
-        "codeLink": "https://picsum.photos/400/250",
-        "publishedAt": "2024-10-18T18:23:24.348Z",
-        "privateBox": false,
-        "technologies": [
-            {
-                "id": "42ee205f-2c4e-2bec-b172-322ec494afd1",
-                "name": "Python"
-            },
-            {
-                "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
-                "name": "SQL"
-            }
-        ]
-    }
-]
+{
+    "technologies": [
+        {
+            "id": "42ee207f-2c4e-4bec-b172-322ec494afd1",
+            "name": "React"
+        },
+        {
+            "id": "42ee207f-2c4e-2bec-b172-322ec494afd1",
+            "name": "Node.js"
+        },
+        {
+            "id": "42ee203f-2c4e-2bec-b172-322ec494afd1",
+            "name": "TypeScript"
+        },
+        {
+            "id": "42ee207f-2c8e-2bec-b172-322ec494afd1",
+            "name": "Java"
+        },
+        {
+            "id": "42ee205f-2c4e-2bec-b172-322ec494afd1",
+            "name": "Python"
+        },
+        {
+            "id": "42ee207f-2c4e-6bec-b172-322ec494afd1",
+            "name": "JavaScript"
+        },
+        {
+            "id": "42ee207f-2c4e-2bec-b172-342ec494afd1",
+            "name": "SQL"
+        },
+        {
+            "id": "42ee507f-2c4e-2bec-b172-322ec494afd1",
+            "name": "CSS"
+        },
+        {
+            "id": "42ee607f-2c4e-2bec-b172-322ec494afd1",
+            "name": "Tailwind"
+        }
+    ],
+    "projects": [
+        {
+            "id": "48ee207f-2c4e-4bec-b172-324ec494afd7",
+            "title": "Prosjekt 1",
+            "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+            "imageLink": "https://picsum.photos/400/250",
+            "liveLink": "#",
+            "codeLink": "#",
+            "publishedAt": "2024-10-17T22:50:38+02:00",
+            "privateBox": true,
+            "technologies": [
+                "42ee207f-2c4e-4bec-b172-322ec494afd1",
+                "42ee207f-2c4e-2bec-b172-322ec494afd1",
+                "42ee203f-2c4e-2bec-b172-322ec494afd1"
+            ]
+        },
+        {
+            "id": "42ee207f-2c4e-4bec-b172-322ec494afd7",
+            "title": "Prosjekt 2",
+            "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+            "imageLink": "https://picsum.photos/400/250",
+            "liveLink": "#",
+            "codeLink": "#",
+            "publishedAt": "2024-10-17T22:50:38+02:00",
+            "privateBox": true,
+            "technologies": [
+                "42ee205f-2c4e-2bec-b172-322ec494afd1",
+                "42ee207f-2c4e-2bec-b172-342ec494afd1"
+            ]
+        },
+        {
+            "id": "48ee207f-2c4e-4bec-b172-322ec454afd7",
+            "title": "Prosjekt 3",
+            "description": "Fusce sit amet mauris ut ante lacinia egestas. Proin a eros id turpis pharetra placerat. Proin dui eros, condimentum sit amet  bibendum eu, tincidunt eu dui. Vivamus iaculis eros eget erat porta,  vel consectetur nulla blandit. Suspendisse et leo cursus, tempor  ipsum in, dictum velit.",
+            "imageLink": "https://picsum.photos/400/250",
+            "liveLink": "#",
+            "codeLink": "#",
+            "publishedAt": "2024-10-17T22:50:38+02:00",
+            "privateBox": true,
+            "technologies": [
+                "42ee207f-2c4e-6bec-b172-322ec494afd1",
+                "42ee507f-2c4e-2bec-b172-322ec494afd1",
+                "42ee607f-2c4e-2bec-b172-322ec494afd1"
+            ]
+        }
+    ]
+}

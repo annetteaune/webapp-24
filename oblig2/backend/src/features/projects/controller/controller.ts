@@ -33,10 +33,17 @@ export const createProjectController = (projectService: ProjectService) => {
     try {
       const body = await c.req.json();
       console.log("Received project data:", JSON.stringify(body, null, 2));
-      console.log("publishedAt type:", typeof body.publishedAt);
-      console.log("publishedAt value:", body.publishedAt);
 
-      const result = await projectService.create(body);
+      // hente tech id hvis de fins
+      const technologyIds =
+        body.technologies?.map((tech: { id: string }) => tech.id) || [];
+
+      // oppretter selve prosjektet
+      const result = await projectService.create({
+        ...body,
+        technologies: undefined, // fjerner tech fra opprettelsesdata
+      });
+
       if (!result.success) {
         console.error("Project creation failed:", result.error);
         return c.json(
@@ -44,12 +51,17 @@ export const createProjectController = (projectService: ProjectService) => {
           { status: 400 }
         );
       }
-      return c.json(result, { status: 201 });
+
+      // hvos det sendes med tech, opprett relasjon
+      if (technologyIds.length > 0) {
+        await projectService.linkTechnologies(result.data, technologyIds);
+      }
+
+      // hente komplett prosjekt
+      const projectWithTech = await projectService.getById(result.data);
+      return c.json(projectWithTech, { status: 201 });
     } catch (error) {
       console.error("Error in project creation:", error);
-      if (error instanceof Error) {
-        console.error("Error stack:", error.stack);
-      }
       return c.json(
         {
           error: "Internal server error",

@@ -54,7 +54,6 @@ export const createProjectService = (
         })
       );
 
-      //TODO error datatype bool/num - appen kjører og klarer jeg ikke finne feilen
       return ResultHandler.success(projectsWithTech);
     } catch (error) {
       return ResultHandler.failure(
@@ -105,6 +104,26 @@ export const createProjectService = (
     return projectRepository.remove(id);
   };
 
+  // lette til tech på prosjekter ved oppretting
+  const linkTechnologies = async (
+    projectId: string,
+    technologyIds: string[]
+  ): Promise<Result<void>> => {
+    try {
+      const insertPromises = technologyIds.map((techId) =>
+        techService.linkTechToProject(projectId, techId)
+      );
+
+      await Promise.all(insertPromises);
+      return ResultHandler.success(undefined);
+    } catch (error) {
+      return ResultHandler.failure(
+        "Error linking technologies to project",
+        "INTERNAL_SERVER_ERROR"
+      );
+    }
+  };
+
   return {
     list,
     create,
@@ -112,6 +131,7 @@ export const createProjectService = (
     getById,
     remove,
     listProjectTech,
+    linkTechnologies,
   };
 };
 

@@ -18,9 +18,17 @@ export const createTechnologyService = (
     return techRepository.addTechToProject(projectID, name);
   };
 
+  const linkTechToProject = async (
+    projectId: string,
+    techId: string
+  ): Promise<Result<void>> => {
+    return techRepository.linkTechToProject(projectId, techId);
+  };
+
   return {
     listByProject,
     addTechToProject,
+    linkTechToProject,
   };
 };
 

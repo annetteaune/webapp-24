@@ -2,7 +2,7 @@ import { db, type DB } from "@/db/db";
 import { DbTechnologies, Technology, TechRepository } from "../types/types";
 import { Result } from "@/types";
 import { ResultHandler } from "@/lib/result";
-import { fromDb, toDb } from "../mappers/mappers";
+import { fromDb } from "../mappers/mappers";
 
 export const createTechRepository = (db: DB): TechRepository => {
   const listByProject = async (
@@ -27,7 +27,7 @@ export const createTechRepository = (db: DB): TechRepository => {
     name: string
   ): Promise<Result<string>> => {
     try {
-      const tech = toDb({ name }, projectID);
+      const tech = { id: crypto.randomUUID(), name };
       const insertTech = db.prepare(
         "INSERT OR IGNORE INTO technologies (id, name) VALUES (?, ?);"
       );
@@ -46,9 +46,25 @@ export const createTechRepository = (db: DB): TechRepository => {
     }
   };
 
+  const linkTechToProject = async (
+    projectId: string,
+    techId: string
+  ): Promise<Result<void>> => {
+    try {
+      const query = db.prepare(
+        "INSERT OR IGNORE INTO project_technologies (project_id, technology_id) VALUES (?, ?)"
+      );
+      query.run(projectId, techId);
+      return ResultHandler.success(undefined);
+    } catch (error) {
+      return ResultHandler.failure(error, "INTERNAL_SERVER_ERROR");
+    }
+  };
+
   return {
     listByProject,
     addTechToProject,
+    linkTechToProject,
   };
 };
 

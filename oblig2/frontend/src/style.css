@@ -166,6 +166,9 @@ header {
       border-radius: 15px;
     }
   }
+  p {
+    text-align: center;
+  }
 }
 
 .published-date {
