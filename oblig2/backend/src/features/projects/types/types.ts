@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { validateDate } from "@/config/validation";
 
 export type Project = {
   id: string;
@@ -12,16 +11,18 @@ export type Project = {
   privateBox: boolean;
 };
 
-export type DbProject = {
-  id: string;
-  title: string;
-  description: string;
-  imageLink: string;
-  liveLink: string;
-  codeLink: string;
-  publishedAt: string;
-  privateBox: number;
-};
+export const DbProjectSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string(),
+  description: z.string(),
+  imageLink: z.string().url(),
+  liveLink: z.string().url(),
+  codeLink: z.string().url(),
+  publishedAt: z.string().datetime(),
+  privateBox: z.number().min(0).max(1),
+});
+
+export type DbProject = z.infer<typeof DbProjectSchema>;
 
 export type CreateProjectDto = Pick<
   Project,
@@ -40,16 +41,3 @@ export type UpdateProjectDto = Partial<
     | "publishedAt"
   >
 >;
-
-export const projectFields: (keyof Project)[] = [
-  "id",
-  "title",
-  "description",
-  "imageLink",
-  "liveLink",
-  "codeLink",
-  "privateBox",
-  "publishedAt",
-];
-
-export type ProjectKeys = keyof Project;

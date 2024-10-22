@@ -1,10 +1,12 @@
+import { z } from "zod";
 import { Result } from "@/types";
 
-export type Technology = {
-  id: string;
-  name: string;
-};
+export const technologySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+});
 
+export type Technology = z.infer<typeof technologySchema>;
 export type DbTechnologies = {
   id: string;
   name: string;
@@ -27,13 +29,3 @@ export type TechRepository = {
     techId: string
   ) => Promise<Result<void>>;
 };
-
-export type CreateTechDto = Pick<Technology, "id" | "name">;
-
-export type UpdateTechDto = Partial<Pick<Technology, "name">>;
-
-export const TechFields: (keyof Technology)[] = ["id", "name"];
-
-export type TechKeys = keyof Technology;
-
-export type TechMap = Map<string, Technology>;

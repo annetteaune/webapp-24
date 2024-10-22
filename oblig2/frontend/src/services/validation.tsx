@@ -1,10 +1,4 @@
-interface Project {
-  title: string;
-  description: string;
-  liveLink?: string;
-  codeLink?: string;
-  imageLink: string;
-}
+import { Project } from "../features/projects/helpers/schema";
 
 export const validateProject = (project: Project) => {
   const { title, description, imageLink } = project;

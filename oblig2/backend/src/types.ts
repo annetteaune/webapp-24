@@ -1,37 +1,3 @@
-import { z } from "zod";
-import { validateDate } from "./config/validation";
-
-// schema for teknologier
-export const TechnologySchema = z.object({
-  id: z.string(),
-  name: z.string(),
-});
-
-export type Technology = z.infer<typeof TechnologySchema>;
-
-export const TechnologyArraySchema = z.array(TechnologySchema);
-
-// schema for prosjekt
-export const ProjectSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string(),
-  imageLink: z.string(),
-  liveLink: z.string(),
-  codeLink: z.string(),
-  publishedAt: z.string(),
-  privateBox: z.boolean(),
-  technologies: z.array(TechnologySchema).optional(),
-});
-
-export const ProjectCreateSchema = ProjectSchema.omit({ id: true });
-
-export const ProjectArraySchema = z.array(ProjectSchema);
-
-export type Project = z.infer<typeof ProjectSchema>;
-
-export type CreateProject = z.infer<typeof ProjectCreateSchema>;
-
 import type { ErrorCode } from "@/lib/error";
 
 export type ID = ReturnType<typeof crypto.randomUUID>;

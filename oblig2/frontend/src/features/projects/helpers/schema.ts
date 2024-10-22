@@ -14,7 +14,7 @@ const projectSchema = z.object({
   publishedAt: z.coerce.date(),
   technologies: z.array(techSchema).optional(),
 });
-
+export type Project = z.infer<typeof projectSchema>;
 const projectsSchema = z.array(projectSchema);
 
 export function validateProject(data: unknown) {
