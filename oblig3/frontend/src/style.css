@@ -240,9 +240,33 @@ header {
 }
 
 .section-title {
-  text-align: center;
   margin-top: 5rem;
   color: var(--fonthover);
+}
+
+.projects-header {
+  .tech-filter {
+    width: 100%;
+    background-color: var(--accentcolor);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+    justify-content: center;
+    .tech-select {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--fontcolor);
+      background-color: var(--backgroundcolor);
+      font-size: 1rem;
+      min-width: 200px;
+      &:hover {
+        border-color: var(--fonthover);
+      }
+    }
+  }
 }
 
 .error-txt {
@@ -285,6 +309,10 @@ footer {
   }
   .form-tech {
     flex-direction: row;
+  }
+
+  .tech-filter {
+    justify-content: flex-end !important;
   }
 }
 

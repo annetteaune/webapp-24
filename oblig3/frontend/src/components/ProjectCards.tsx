@@ -1,6 +1,7 @@
 import { FaCode, FaGlobe, FaTrash } from "react-icons/fa";
-import { Project } from "../types";
+
 import { format } from "date-fns";
+import { Project } from "../features/projects/helpers/schema";
 
 interface ProjectCardProps {
   project: Project;
